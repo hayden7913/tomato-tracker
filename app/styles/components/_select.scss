@@ -1,0 +1,61 @@
+.select {
+  font-size: 22px;
+  margin-bottom: 10px;
+  &.popup-menu  {
+    .popup-menu-trigger {
+      color: $dark-grey;
+      padding: 5px;
+      &:hover {
+        background-color: $light-grey;
+      }
+    }
+  }
+  
+  .option {
+    font-size: 18px;
+    padding: 7px 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;  
+  }
+  
+  .option:hover {
+    background-color: $super-light-grey;
+    cursor: pointer;
+  }
+  
+  .grey {
+    color: $dark-grey;
+  }
+}
+
+@keyframes scaleTranslate{
+  from { opacity:0; }
+}
+
+.popup-menu-enter {
+  opacity: 0;
+  transform:   translateY(-40%) scale(0.9);
+
+}
+.popup-menu-enter.popup-menu-enter-active {
+  opacity: 1;
+  transform:   translateY(-50%) scale(1);
+  transition-property: transform, opacity, scale;
+  transition-duration: 200ms;
+  transition: opacity 0.4s, transform 0.4s;
+  // transition-timing-function: cubic-bezier(0.175, 0.665, 0.420, 1), linear;
+}
+
+
+.popup-menu-leave {
+  opacity: 1;
+  transform:   translateY(-50%) scale(1);
+}
+
+.popup-menu-leave.popup-menu-leave-active {
+  opacity: 0;
+  transform:   translateY(-40%) scale(0.9);
+  transition: opacity 0.4s, transform 0.4s;
+}
+

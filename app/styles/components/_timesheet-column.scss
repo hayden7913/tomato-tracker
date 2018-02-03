@@ -1,0 +1,42 @@
+.timesheet-col {
+  $left-right-padding: 3%;
+  // border: 1px solid black;
+  display: inline-block; 
+  text-align: left;
+  vertical-align: top;
+  
+  &.timesheet-col1 {
+    width: 15%;
+    padding-left: $left-right-padding;
+    // height: 30px;
+  }
+  
+  &.timesheet-col2 {
+    width: 65%;
+    // padding-left: 19%;
+  }
+  
+  &.timesheet-col3 {
+    width: 20%;
+    text-align: right;
+    padding-right: $left-right-padding;
+    // visibility: hidden;rtical-align: middle;
+  }
+  
+  &.timesheet-col4 {
+    // width: 10%;
+    // vertical-align: middle;
+  }
+  
+  .timesheet-col-title {
+    color: $faded-black;
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 2.4px;
+    margin-bottom: 20px;
+  }
+  
+  .timesheet-col-time {
+    font-size: .95em;
+  }
+}

@@ -1,0 +1,37 @@
+$section-padding: 55px;
+// $top-section-height: 35;
+// $bottom-section-height: 100-35;
+
+.timer-section {
+  // background-color: $light-grey;
+  // border-bottom: 1px solid $medium-grey;
+  // padding-bottom: 55px;
+  padding: $section-padding 0; 
+  text-align: center;
+    
+    .timer-container {
+      width: 60%;
+      margin: 0 auto;
+    }
+    
+    .timer-settings-wrapper {
+      // display: none;
+      color: #BDBDBD;
+      padding: 5px;
+      position: absolute;
+      top: 80px;  
+      right: 35px;
+    }
+
+    .timer-settings-wrapper:hover {
+      color: #9E9E9E;
+      cursor: pointer;
+    }
+}
+
+
+.task-nag-section {
+  height: 50%;
+  padding: $section-padding; 
+  position: relative;
+}

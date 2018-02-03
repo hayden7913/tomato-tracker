@@ -1,0 +1,38 @@
+.timer {
+  position: relative;
+  width: 225px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 100;
+   
+  .timer-content {
+    font-size: 33px;
+    @include centerVertHoriz();
+    // border: 1px solid #000;
+    
+    .timer-control {
+      color: $timer-color;
+      cursor: pointer; 
+      
+      &.disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      
+      .icon-play-rounded {
+        // border: 1px solid #000;
+        font-size: 44px;
+        position: relative;
+        // left: 7%;
+      }
+    }
+    
+  }
+
+  
+  .edit-time, 
+  .editing {
+    font-size: 1.5em;
+  }
+}
+
