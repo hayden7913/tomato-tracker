@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import App from './containers/App';
+
 import AddProjectPage from './containers/AddProjectPage';
 import EditProjectPage  from './containers/EditProjectPage';
 import ProjectsPage from './containers/ProjectsPage';
