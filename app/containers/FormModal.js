@@ -8,7 +8,7 @@ import shortid from 'shortid';
 
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
 
-import store from 'reduxFiles/store';
+import store from 'reduxFiles/configureStore';
 
 import { 
   addTask,

@@ -8,7 +8,7 @@ import TimeTrackerPage from './containers/TimeTrackerPage';
 
 export default (
   <Switch>
-    <Route component={TimeTrackerPage}/>
+    <Route exact path="/" component={TimeTrackerPage}/>
     <Route path="/projects" component={ProjectsPage}/>
     <Route path="/projects/new" component={AddProjectPage}/>
     <Route path="/projects/:projectId" component={EditProjectPage}/>

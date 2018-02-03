@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import Notification  from 'react-web-notification';
 
-import { routeToProjectsPage, routeToTimerPage } from 'helpers/route';
+import { routeToProjectsPage, routeToTimerPage } from '../helpers/route';
 import { changeActiveLink, fetchProjects, handleKeyDown, toggleProjectNagModal } from '../actions/indexActions';
 
 import Nav from '../components/Nav';
@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       showNotification: true
-    }
+    };
   }
 
   // componentWillReceiveProps() {
@@ -75,8 +75,8 @@ const mapStateToProps = state => {
   return {
     isDesktopNotificationActive,
     projects: projects.items
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, {
   changeActiveLink,

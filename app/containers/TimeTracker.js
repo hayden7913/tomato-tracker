@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import { hashHistory } from 'react-router';
 import shortid from 'shortid';
 
-import { secondsToHMMSS } from 'helpers/time';
+import { secondsToHMMSS } from '../helpers/time';
 
 import ContextMenu from './ContextMenu';
 import Modal from './Modal';

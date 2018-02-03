@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
+import { routerReducer as routing } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
 import { customForm } from './customForm';
 import { clickedTaskId } from './clickedTaskId';
 import { config } from './config';
 import { editMenu } from './editMenu';
-import { entities } from './entities';
+// import { entities } from './entities';
 import { modal } from './modal';
 import { nav } from './nav';
 import { projects } from './projects';
@@ -17,11 +18,12 @@ export default combineReducers({
     config,
     customForm,
     editMenu,
-    entities,
+    // entities,
     modal,
     // nav, not currently in use!
     projects,
     selectedProjectId,
     timer,
-    form: formReducer
+    form: formReducer,
+    routing,
 });

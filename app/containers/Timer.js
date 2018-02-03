@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect} from 'react-redux';
 
-import store from '../redux-files/store';
+import store from '../store/configureStore';
 
 import {
   decrementTimer,
