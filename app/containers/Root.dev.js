@@ -13,7 +13,7 @@ export default function Root({store, history}) {
     <Provider store={store}>
       <div>
         <ConnectedRouter history={history}>
-          <Route path="/" component={TimeTrackerPage}/>
+          <Route path="/" component={App}/>
           {/* <Route exact path="/" component={TimeTrackerPage}/> */}
         </ConnectedRouter>
         {/* <DevTools /> */}

@@ -18,8 +18,14 @@ const taskRouter = require('./server-files/routes/taskRouter');
 mongoose.Promise = global.Promise;
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+    app.use(express.static('build'));
 }
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(express.static('public'));
 app.use(bodyParser.json());

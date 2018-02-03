@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgressbar from 'react-circular-progressbar';
-import FontAwesome from 'react-fontawesome';
 
 import { secondsToMSS } from '../helpers/time'
 import { showProgressBar, devStyle } from '../srcConfig/devSettings'
@@ -10,7 +9,7 @@ import EditInlineText from '../containers/EditInlineText';
 
 export default function TimeDisplay(props) {
   const {
-    activeTaskId, 
+    activeTaskId,
     handleButtonClick,
     isTimerActive,
     isTimerControlActive,
@@ -20,19 +19,19 @@ export default function TimeDisplay(props) {
     title,
     time
   } = props;
-  
+
   const progressPercentage = Math.round((1-(time/startCount))*100);
-  let displayTime = time || startCount; 
-  
+  let displayTime = time || startCount;
+
   const flippedClass = isTimerActive ? "flip-button flipped" : "flip-button";
-  
+
   return (
     <div className="timer">
       <div className="progress-bar-container"></div>
       {showProgressBar && <CircularProgressbar
-        initialAnimation={true} 
-        percentage={progressPercentage} 
-        strokeWidth={4} 
+        initialAnimation={true}
+        percentage={progressPercentage}
+        strokeWidth={4}
         textForPercentage={(pct)=> ""}
       />}
       <div>{title}</div>
@@ -41,8 +40,8 @@ export default function TimeDisplay(props) {
         <EditInlineText className={`edit-time`} handleChange={setStartTime} text={secondsToMSS(displayTime)} />
         {/* <div className="timer-control"> */}
         {/* <div className={`timer-control ${isTimerActive ? "" : "timer-control-large"}`}> */}
-          <div 
-            className={`timer-control `}  
+          <div
+            className={`timer-control `}
             onClick={isTimerControlActive && handleButtonClick}
             >
                 <div className={`${isTimerActive? "icon-stop-rounded" : "icon-play-rounded"}`}></div>

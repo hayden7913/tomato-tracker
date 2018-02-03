@@ -141,10 +141,9 @@ export const fetchProjectsSuccess = (projects) => ({
 export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 export function fetchProjects() {
   return (dispatch) => {
-
     dispatch({ type: 'TOGGLE_FETCHING' })
 
-    fetch('projects')
+    fetch('http://localhost:3002/projects')
     .then((res) => {
       return res.json();
     })
