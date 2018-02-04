@@ -21,6 +21,11 @@ import {
 import TimeTracker from './TimeTracker';
 
 class TimeTrackerPage extends Component {
+  componentDidUpdate() {
+    console.log('helllooeoeoeooe')
+    fetchProjects();
+  }
+
   shouldComponentUpdate(nextProps) {
     const { isModalActive, selectedProjectId } = this.props;
 
@@ -39,7 +44,8 @@ class TimeTrackerPage extends Component {
       selectedTasks,
     } = this.props;
 
-    if (!hasFetched) {
+    // if (!hasFetched) {
+    if (false) {
       return <div className="loader">Loading...</div>
     }
     return (

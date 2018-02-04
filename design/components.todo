@@ -1,0 +1,47 @@
+Etntries-View:
+  I should be able to...
+
+  ☐ View each time entry I've recorded in a list
+    ☐ a time entry starts when I start recording a task and ends when that task has finished or I manually stop recording
+
+  ☐ Edit the duration of each task
+
+  ☐ Undo edits to the duration of each task
+
+Groups-Feature:
+  I should be able to...
+
+  Group-Menu:
+    ☐ Assign a group to one or more highlighted tasks
+
+  Group-Card:
+    ☐ View a group card that has bold or all caps text and shows the sum of its childrens durations
+
+  New-Task-Form:
+    ☐ Assign a group to each new task
+
+  Edit-Task-Menu:
+    ☐ Change the group a task belongs to
+
+    ☐ Add, Edit, and Delete groups
+
+    ☐ Use hotkey to toggle a group menu
+
+    ☐ Assign a color to each group from a color pallate
+
+
+Tags-Feature:
+  New-Task-Form:
+    ☐ Add new tags and assign tags to tasks
+
+  Group-Menu:
+  ☐ Add, edit, delete tags
+  ☐ View a total duration for each tag
+
+  Etntries-View:
+  ☐ View a list of tasks for each tag
+
+Edit-Task-Time-Feature:
+  ☐ View the original time  when I start editing
+
+  ☐ Make quick changes to time with buttons  +1 , +5, +10, -1, -5, -10

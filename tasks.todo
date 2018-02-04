@@ -1,0 +1,16 @@
+/^((?!(\[HMR|\[WDS)).)*$/
+
+
+
+
+☐ Fetch data
+  ☐ Get App Component functioning
+    ☐ Add logic on bit at a time
+
+☐ Add links to Nav component
+  ☐ Look up links
+  ☐ Add links
+
+☐ Add notification
+☐ Rm purple from links
+☐ Copy over index.html

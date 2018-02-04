@@ -14,7 +14,7 @@ import {
   deleteProject,
   setSelectedProject,
   setTempTasks,
-  toggleTimer, 
+  toggleTimer,
   updateProjectName
 } from '../actions/indexActions';
 
@@ -31,80 +31,80 @@ import TotalTime from '../components/TotalTime';
 class ProjectsPage extends Component {
   constructor(){
     super();
-    
+
     this.state = {
       isProjectSelectTipActive: sessionStorage.isProjectSelectTipActive !== undefined
-        ? JSON.parse(sessionStorage.isProjectSelectTipActive) 
+        ? JSON.parse(sessionStorage.isProjectSelectTipActive)
         : true
     }
   }
-  
+
   static defaultProps = {
     projects: ['filler']
   }
-  
+
   componentWillMount() {
     const { isOnboardingActive } = this.props;
-    
+
     if (isOnboardingActive) {
       routeToTimerPage();
-    } 
+    }
   }
-  
+
   componentWillMount() {
-    
-  }   
+
+  }
 
   handleAddButtonClick() {
     const { setTempTasks } = this.props;
-    
+
     setTempTasks([]);
     hashHistory.push('/projects/new');
   }
-  
+
   handleDeleteOptionClick = (project) => (evt) => {
     evt.stopPropagation();
-    
+
     const { deleteProject } = this.props;
-    
+
     deleteProject(project);
   }
-  
+
   handleEditOptionClick = (project) => (evt) => {
     evt.stopPropagation()
     const { setSelectedProject } = this.props;
-    
+
     setSelectedProject(project.shortId);
     hashHistory.push(`/projects/${project.shortId}`)
-  }  
-  
+  }
+
   handleListItemClick = (projectId) => () => {
     const { isTimerActive, setSelectedProject, toggleTimer } = this.props;
     if (isTimerActive) {
      toggleTimer();
     }
-      
+
     setSelectedProject(projectId);
     routeToTimerPage();
-  }  
-  
+  }
+
   toggleProjectSelectTip() {
     sessionStorage.setItem('isProjectSelectTipActive', false);
-    
+
     this.setState({ isProjectSelectTipActive: false });
   }
-  
+
   renderProject (project){
     const { changeActiveContextMenu, projects, selectedProjectId } = this.props;
     const { projectName, shortId } = project;
-    
-    const totalTime = 
+
+    const totalTime =
       project.tasks.length > 0
         ? project.tasks.map(task => task.recordedTime).reduce((a,b) => a + b)
         : 0;
-    
+
     return (
-      <TimesheetListItem 
+      <TimesheetListItem
         actionIconClass="arrow-right"
         key={shortid.generate()}
         handleItemClick={this.handleListItemClick(shortId)}
@@ -113,9 +113,9 @@ class ProjectsPage extends Component {
         title={projectName}
         time={totalTime}
       >
-        <ContextMenu 
+        <ContextMenu
           className='list-item-context-menu'
-          onMenuClick={changeActiveContextMenu}    
+          onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
           <li className="popup-menu-item" onClick={this.handleEditOptionClick(project)}>
@@ -126,57 +126,57 @@ class ProjectsPage extends Component {
             <i className="context-menu-icon icon-delete"></i>
             <a>Delete</a>
           </li>
-        </ContextMenu>  
+        </ContextMenu>
       </TimesheetListItem>
     );
-  } 
-  
+  }
+
   getTotalTime() {
     const { projects } = this.props;
-    
+
     if(!projects.length) {
-      return 0; 
+      return 0;
     }
-    
+
     return projects.map(project => {
       if (!project.tasks.length) {
         return 0;
       }
-          
+
       return project.tasks.map(task => Number(task.recordedTime)).reduce((a,b) => a + b);
     })
     .reduce((a,b) => a + b);
   }
-  
+
   render() {
     const { hasFetched, isModalClosing, isOnboardingActive, projects } = this.props;
     const { isProjectSelectTipActive } = this.state;
     const reverseProjects = projects.slice().reverse();
     const totalTime = this.getTotalTime();
-    
-    if (!hasFetched){
+
+    if (false){
       return <div className="loader">Loading...</div>;
     }
-    
+
     return (
       // <div className='projects-page-container pt-page-moveFromBottomFade'>
       <div>
-        {/* { (isProjectSelectTipActive && projects.length > 1) && 
+        {/* { (isProjectSelectTipActive && projects.length > 1) &&
           <div className="project-select-tip-wrapper">
             <div className="project-select-tip">
-              <FontAwesome className="info-icon" name='info-circle'></FontAwesome>  
+              <FontAwesome className="info-icon" name='info-circle'></FontAwesome>
               <span>To track time for a different project, simply select it from the list below.</span>
               <button onClick={this.toggleProjectSelectTip.bind(this)}>
-                <i className="icon-close"></i>   
+                <i className="icon-close"></i>
               </button>
             </div>
-          </div>  
+          </div>
         } */}
-        { projects.length 
+        { projects.length
           ? <Timesheet
               buttonText="NEW PROJECT"
               handleButtonClick={this.handleAddButtonClick.bind(this)}
-              titleText={"Projects"} 
+              titleText={"Projects"}
             >
               <List className="timesheet-list list" items={projects} renderItem={this.renderProject.bind(this)}/>
               <TotalTime time={secondsToHMMSS(totalTime)} />
@@ -186,7 +186,7 @@ class ProjectsPage extends Component {
                 actionButtonText="ADD PROJECT"
                 nagMessage="Please create a project to continue."
                 onActionButtonClick={this.handleAddButtonClick.bind(this)}
-              /> 
+              />
               <Modal modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
                 rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
               />
@@ -198,13 +198,13 @@ class ProjectsPage extends Component {
 }
 
 const mapStateToProps = state => {
-  const {  projects, modal, selectedProjectId, timer } = state; 
+  const {  projects, modal, selectedProjectId, timer } = state;
   const { isOnboardingActive, isModalClosing } = modal;
   const { hasFetched } = projects;
   const { isTimerActive } = timer;
-  
+
   return {
-    hasFetched, 
+    hasFetched,
     isModalClosing,
     isOnboardingActive,
     isTimerActive,
@@ -213,7 +213,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { 
+export default connect(mapStateToProps, {
   addProject,
   changeActiveContextMenu,
   deleteProject,

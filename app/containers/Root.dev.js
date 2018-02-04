@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Provider} from 'react-redux';
-import {Route} from 'react-router-dom';
+import {Link, Switch, Route} from 'react-router-dom';
 import {ConnectedRouter} from 'react-router-redux';
+
+import AddProjectPage from './AddProjectPage';
+import EditProjectPage  from './EditProjectPage';
+import ProjectsPage from './ProjectsPage';
 import TimeTrackerPage from './TimeTrackerPage';
 
-import App from '../containers/App';
+import App2 from '../containers/App2';
 // import DevTools from './DevTools';
 
 export default function Root({store, history}) {
@@ -13,8 +17,7 @@ export default function Root({store, history}) {
     <Provider store={store}>
       <div>
         <ConnectedRouter history={history}>
-          <Route path="/" component={App}/>
-          {/* <Route exact path="/" component={TimeTrackerPage}/> */}
+          <Route path="/" component={App2} />
         </ConnectedRouter>
         {/* <DevTools /> */}
       </div>

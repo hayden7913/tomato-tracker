@@ -8,6 +8,7 @@ import { routeToProjectsPage, routeToTimerPage } from '../helpers/route';
 import { changeActiveLink, fetchProjects, handleKeyDown, toggleProjectNagModal } from '../actions/indexActions';
 
 import Nav from '../components/Nav';
+import Routes from '../routes';
 
 class App extends Component {
   constructor() {
@@ -48,22 +49,18 @@ class App extends Component {
     const isProjectRoute = /projects/.test(pathName);
 
     return (
-      // <div className={`${(pathName === '/' || pathName === '/projects') ? 'main-page' : '' }`}>
-      <div>
-        <Nav
-          activeLink={isProjectRoute ? 'PROJECTS' : 'TIMER'}
-          handleTimerLinkClick={routeToTimerPage}
-          handleProjectsLinkClck={routeToProjectsPage}
-          isProjectRoute={isProjectRoute}
-        />
-        {this.props.children}
-        {isDesktopNotificationActive
+      <Nav
+        activeLink={isProjectRoute ? 'PROJECTS' : 'TIMER'}
+        handleTimerLinkClick={routeToTimerPage}
+        handleProjectsLinkClck={routeToProjectsPage}
+        isProjectRoute={isProjectRoute}
+      />
+        /* {isDesktopNotificationActive
           && <Notification
             title="Time's Up!"
             ignore={false}
             options={{ icon: 'images/tomato-timer.png' }}
-          />}
-      </div>
+          />} */
     );
   }
 }
