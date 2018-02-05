@@ -3,6 +3,7 @@ const shouldDeleteDb = false;
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const chalk = require('chalk');
 
 const app = express();
 
@@ -74,11 +75,6 @@ app.put('/fr/:frId', (req, res) => {
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
 });
-// const seedSampleData = () => {
-//     const seedData = sampleData.projects;
-//
-//     return Projects.insertMany(seedData);
-// };
 
 // function resetDb() {
 //     return new Promise((resolve, reject) => {
@@ -113,12 +109,12 @@ let server;
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
     return new Promise((resolve, reject) => {
-        mongoose.connect(databaseUrl, (err) => {
+        mongoose.connect(databaseUrl, { useMongoClient: true }, (err) => {
             if (err) {
                 return reject(err);
             }
             server = app.listen(port, () => {
-                console.log(`Your app is listening on port ${port}`);
+                console.log(`Server is running at ${chalk.bold.cyan('http://localhost:' + port)}`);
                 resolve();
             })
       .on('error', (err) => {
