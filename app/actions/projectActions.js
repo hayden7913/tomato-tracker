@@ -145,7 +145,7 @@ export function fetchProjects() {
   return (dispatch) => {
     dispatch({ type: 'TOGGLE_FETCHING' })
 
-    fetch('http://localhost:3002/projects')
+    fetch(`${BASE_URL}/projects`)
     .then((res) => {
       return res.json();
     })
