@@ -22,7 +22,6 @@ import TimeTracker from './TimeTracker';
 
 class TimeTrackerPage extends Component {
   componentDidUpdate() {
-    console.log('helllooeoeoeooe')
     fetchProjects();
   }
 

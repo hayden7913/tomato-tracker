@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import shortid from 'shortid';
 
 import { secondsToHMMSS } from '../helpers/time';
@@ -48,8 +49,7 @@ export default function TimesheetListItem(props) {
         </div>
         { children }
       </TimesheetColumn>
-       <TimesheetColumn colNumber="4">
-      </TimesheetColumn>
+       <TimesheetColumn colNumber="4"/>
     </ListItem>
   );
 }

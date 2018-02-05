@@ -78,7 +78,7 @@ $form-margin-left: 30%;
 
 .normal-modal {
   .form-task-list {
-    max-height: 265px;
+    max-height: 300px;
 
     @include respond-to(medium-screens) {
       max-height: 85px;

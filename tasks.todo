@@ -3,14 +3,15 @@
 
 
 
-☐ Fetch data
-  ☐ Get App Component functioning
-    ☐ Add logic on bit at a time
+✔ Fetch data @done(2018-02-04 02:36)
+  ✔ Get App Component functioning @done(2018-02-04 02:36)
+    ✔ Add logic on bit at a time @done(2018-02-04 02:36)
 
-☐ Add links to Nav component
-  ☐ Look up links
-  ☐ Add links
+✔ Add links to Nav component @done(2018-02-04 02:36)
+  ✔ Look up links @done(2018-02-04 02:36)
+  ✔ Add links @done(2018-02-04 02:36)
+  ✔ Rm purple from links @done(2018-02-04 02:43)
 
 ☐ Add notification
-☐ Rm purple from links
 ☐ Copy over index.html
+☐ Import icons

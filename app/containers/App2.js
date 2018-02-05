@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {Link, Switch, Route} from 'react-router-dom';
+import Notification  from 'react-web-notification';
 
 import { routeToProjectsPage, routeToTimerPage } from '../helpers/route';
 import { changeActiveLink, fetchProjects, handleKeyDown, toggleProjectNagModal } from '../actions/indexActions';
@@ -31,6 +32,12 @@ class App extends Component {
           isProjectRoute={isProjectRoute}
         />
         {Routes}
+         {isDesktopNotificationActive
+          && <Notification
+            title="Time's Up!"
+            ignore={false}
+            options={{ icon: 'images/tomato-timer.png' }}
+        />}
       </div>
     );
   }

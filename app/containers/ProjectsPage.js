@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FontAwesome from 'react-fontawesome';
-import { hashHistory } from 'react-router';
+import { push } from 'react-router-redux'
 import shortid from 'shortid';
 
 import { secondsToHMMSS } from '../helpers/time';
@@ -57,9 +56,9 @@ class ProjectsPage extends Component {
 
   handleAddButtonClick() {
     const { setTempTasks } = this.props;
-
+    console.log(push);
     setTempTasks([]);
-    hashHistory.push('/projects/new');
+    push('/projects/new');
   }
 
   handleDeleteOptionClick = (project) => (evt) => {
@@ -75,7 +74,7 @@ class ProjectsPage extends Component {
     const { setSelectedProject } = this.props;
 
     setSelectedProject(project.shortId);
-    hashHistory.push(`/projects/${project.shortId}`)
+    push(`/projects/${project.shortId}`);
   }
 
   handleListItemClick = (projectId) => () => {
@@ -210,13 +209,14 @@ const mapStateToProps = state => {
     isTimerActive,
     selectedProjectId,
     projects: projects.items,
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, {
   addProject,
   changeActiveContextMenu,
   deleteProject,
+  push,
   setSelectedProject,
   setTempTasks,
   toggleTimer,
@@ -225,4 +225,4 @@ export default connect(mapStateToProps, {
 
 ProjectsPage.propTypes = {
   projects: PropTypes.array.isRequired
-}
+};

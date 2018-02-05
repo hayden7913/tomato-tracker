@@ -55,12 +55,12 @@ class App extends Component {
         handleProjectsLinkClck={routeToProjectsPage}
         isProjectRoute={isProjectRoute}
       />
-        /* {isDesktopNotificationActive
-          && <Notification
-            title="Time's Up!"
-            ignore={false}
-            options={{ icon: 'images/tomato-timer.png' }}
-          />} */
+        //  {isDesktopNotificationActive
+        //   && <Notification
+        //     title="Time's Up!"
+        //     ignore={false}
+        //     options={{ icon: 'images/tomato-timer.png' }}
+        //   />}
     );
   }
 }

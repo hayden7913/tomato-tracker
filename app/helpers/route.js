@@ -1,11 +1,15 @@
-import { hashHistory } from 'react-router';
+import { BASE_URL } from  '../srcConfig/baseURL';
+import { push } from 'react-router-redux'
+
+import { configureStore } from '../store/configureStore';
+const store = configureStore();
 
 export const routeToProjectsPage = () => {
-  hashHistory.push('/projects');
-  window.scrollTo(0,0);
+  store.dipatch('/projects');
+  window.scrollTo(0, 0);
 }
 
 export const routeToTimerPage = () => {
-  hashHistory.push('/');
-  window.scrollTo(0,0);
-} 
+  store.dispatch(push('/'))
+  window.scrollTo(0, 0);
+}

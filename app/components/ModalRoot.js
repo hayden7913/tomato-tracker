@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 import { Provider } from 'react-redux'
 
-import store from '../store/configureStore';
+import { configureStore } from '../store/configureStore';
+const store = configureStore();
 
 export default class ModalRoot extends Component {
   componentDidMount() {

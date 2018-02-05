@@ -4,6 +4,7 @@ const { Projects } = require('../models');
 
 projectRouter.route('/')
   .get((req, res) => {
+      console.log('getting')
       Projects
       .find()
       .exec()
