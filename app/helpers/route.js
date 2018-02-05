@@ -5,7 +5,7 @@ import { configureStore } from '../store/configureStore';
 const store = configureStore();
 
 export const routeToProjectsPage = () => {
-  store.dipatch('/projects');
+  store.dispatch(push('/projects'));
   window.scrollTo(0, 0);
 }
 

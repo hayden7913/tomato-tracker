@@ -10,10 +10,10 @@ export default (
   <div>
     <Switch>
       <Route exact path="/" component={TimeTrackerPage}/>
-      <Route path="/projects" component={ProjectsPage}/>
-      <Route path="/projects/new" component={AddProjectPage}/>
+      <Route exact path="/projects" component={ProjectsPage}/>
+      <Route exact path="/projects/new" component={AddProjectPage}/>
       <Route path="/projects/:projectId" component={EditProjectPage}/>
-      <Route path="/*" component={TimeTrackerPage}/>
+      {/* <Route path="/*" component={TimeTrackerPage}/> */}
     </Switch>
   </div>
 );

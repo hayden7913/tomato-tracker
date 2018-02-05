@@ -14,62 +14,62 @@ import SingleInputForm from '../components/SingleInputForm';
 let AddProjectPage = class extends Component {
   handleNewProjectSubmit({ singleInput: projectName }) {
     const { newTasks, postProject, projects, remoteSubmit } = this.props;
-    const projectNames = projects.items.map((project) => project.projectName);    
-    
+    const projectNames = projects.items.map((project) => project.projectName);
+
     if (!hasAnyValue(projectName)) {
       remoteSubmit(null);
-      
+
       throw new SubmissionError({
-        singleInput: 'Project name is required' 
+        singleInput: 'Project name is required'
       })
     }
-    
+
     if (isDuplicate(projectName, projectNames)) {
       throw new SubmissionError({
         singleInput: `A project with the name '${projectName}' already exists`,
       })
-    }    
-    
+    }
+
     postProject(projectName, newTasks);
     remoteSubmit(null);
     routeToProjectsPage();
-  } 
-  
+  }
+
   handleRemoteSubmit() {
     const { remoteSubmit } = this.props;
-    
+
     remoteSubmit('ADD_PROJECT');
-  }  
-  
+  }
+
   render() {
     const { remoteSubmitForm } = this.props;
-    
+
     return(
-        <ProjectTaskForm 
+        <ProjectTaskForm
           handleSubmit={this.handleRemoteSubmit.bind(this)}
           handleCancel={routeToProjectsPage}
           label="Project Name"
           title="New Project"
-        >  
+        >
             <SingleInputForm
               formName={"projectName"}
               placeholder={"Project Name"}
               remoteSubmitForm={remoteSubmitForm}
               shouldRenderSubmitButton={false}
               onTargetUpdate={this.handleNewProjectSubmit.bind(this)}
-              targetValue="ADD_PROJECT" 
+              targetValue="ADD_PROJECT"
               targetPropKey="remoteSubmitForm"
             />
-        </ProjectTaskForm>  
+        </ProjectTaskForm>
     );
   }
 }
-  
+
   const mapStateToProps = state => {
     const { customForm, projects } = state;
     const { remoteSubmitForm, taskForm } = customForm;
     const { tasks: newTasks} = taskForm;
-        
+
     return {
       newTasks,
       projects

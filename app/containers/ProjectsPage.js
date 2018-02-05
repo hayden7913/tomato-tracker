@@ -55,7 +55,7 @@ class ProjectsPage extends Component {
   }
 
   handleAddButtonClick() {
-    const { setTempTasks } = this.props;
+    const { push, setTempTasks } = this.props;
     console.log(push);
     setTempTasks([]);
     push('/projects/new');
@@ -71,7 +71,7 @@ class ProjectsPage extends Component {
 
   handleEditOptionClick = (project) => (evt) => {
     evt.stopPropagation()
-    const { setSelectedProject } = this.props;
+    const { push, setSelectedProject } = this.props;
 
     setSelectedProject(project.shortId);
     push(`/projects/${project.shortId}`);
