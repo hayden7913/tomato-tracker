@@ -191,7 +191,7 @@ export function postProject(projectName, tasks) {
     dispatch(postProjectRequest(newProject));
 
     fetch(
-      BASE_URL,
+      `${BASE_URL}/projects/projects`,
       {
           method: "POST",
           body: JSON.stringify(newProject),
@@ -262,7 +262,7 @@ export function updateProjectName(project, newName) {
     dispatch(updateProjectNameRequest(project.shortId, newName));
 
     fetch(
-      `${BASE_URL}/${project._id}`,
+      `${BASE_URL}/projects/${project._id}`,
       {
           method: "PUT",
           body: JSON.stringify({ projectName: newName,  }),
@@ -277,7 +277,7 @@ export function updateProjectName(project, newName) {
 export function postTask(projectId, task) {
   return (dispatch) => {
     fetch(
-        `${BASE_URL}/${projectId}`,
+        `${BASE_URL}/projects/${projectId}`,
       {
         method: "POST",
         body: JSON.stringify(task),
@@ -306,7 +306,7 @@ export function updateTask(project, task, toUpdate) {
     dispatch(editTask(project.shortId, task.shortId, toUpdate))
 
     fetch(
-      `${BASE_URL}/${project._id}/tasks/${task._id}`,
+      `${BASE_URL}/projects/${project._id}/tasks/${task._id}`,
       {
         method: "PUT",
         body: JSON.stringify(toUpdate),
@@ -330,7 +330,7 @@ export function deleteProject(project) {
     })
 
     fetch(
-      `${BASE_URL}/${project._id}`,
+      `${BASE_URL}/projects/${project._id}`,
       {
         method: "DELETE",
         headers: new Headers({
@@ -348,7 +348,7 @@ export function deleteTask(project, task, shouldUpdateLocalState) {
     }
 
     fetch(
-      `${BASE_URL}/${project._id}/tasks/${task._id}`,
+      `${BASE_URL}/projects/${project._id}/tasks/${task._id}`,
       {
           method: "DELETE",
           headers: new Headers({

@@ -93,8 +93,8 @@ export function incrementTaskTime(project, task) {
     });
 
   console.log(project._id, task._id)
-    // fetch(`${BASE_URL}/${project._id}/tasks/${task._id}`, {
-    fetch(`${"http://localhost:3002"}/${project._id}/tasks/${task._id}`, {
+    // fetch(`${BASE_URL}/projects/${project._id}/tasks/${task._id}`, {
+    fetch(`${BASE_URL}/projects/${project._id}/tasks/${task._id}`, {
       method: 'PUT',
       body: JSON.stringify(updatedTask),
       headers: {
