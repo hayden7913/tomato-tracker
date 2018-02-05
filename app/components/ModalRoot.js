@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { store } from  '../index.js';
 
 import { Provider } from 'react-redux'
 
-import { configureStore } from '../store/configureStore';
-const store = configureStore();
-console.log(store.getState())
+// import { configureStore } from '../store/configureStore';
+// const store = configureStore();
+
+console.log(store.getState());
 export default class ModalRoot extends Component {
   componentDidMount() {
     this.modalTarget = document.createElement('div');

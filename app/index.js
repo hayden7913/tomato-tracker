@@ -7,7 +7,7 @@ import Root from './containers/Root';
 import './styles/index.scss';
 import './styles/icons/style.css';
 
-const store = configureStore();
+export const store = configureStore();
 
 render(
   <AppContainer>

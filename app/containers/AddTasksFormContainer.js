@@ -153,15 +153,14 @@ const mapStateToProps = (state, ownProps) => {
   const { customForm, selectedProjectId, modal, projects } = state;
   const { isModalActive, isOnboardingActive } = modal;
   const formTasks = customForm.taskForm.tasks;
-
+  console.log(state)
   const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
-    // console.log(formTasks)
+
   const tasks = selectedProject && (ownProps.showTasksForSelectedProject !== false)
     ? selectedProject.tasks.map(task => Object.assign(task, { shouldDelete: false }))
     : [];
-    // console.log(selectedProject && ownProps.showTasksForSelectedProject !== false)
-    // console.log(tasks)
+
   return {
     selectedProject,
     selectedProjectId,
