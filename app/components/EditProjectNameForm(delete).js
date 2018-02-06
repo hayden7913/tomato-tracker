@@ -9,40 +9,40 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
     <label />
     <input
-      {...input} 
-      autoFocus 
+      {...input}
+      autoFocus
       autoComplete="off"
-      className="form-input fullscreen-input add-project-input" 
-      placeholder="Project name" 
-      type={type} 
+      className="form-input fullscreen-input add-project-input"
+      placeholder="Project name"
+      type={type}
     />
     {touched && error && <div className="form-error">{error}</div>}
   </div>
-)
+);
 
 let EditProjectForm = class extends Component {
   componentWillMount() {
     const { project } = this.props;
-    
+
     if (!project) {
-      hashHistory.push('/projects'); 
+      hashHistory.push('/projects');
     }
   }
-    
+
   componentDidUpdate(prevProps) {
     if (prevProps.shouldSubmit !== this.props.shouldSubmit) {
       const { handleSubmit, handleEditProjectSubmit, project, updateProjectName } = this.props;
       handleSubmit(handleEditProjectSubmit(project, updateProjectName))();
     }
-  }  
-  
+  }
+
   handleEditProjectSubmit = (project, updateProjectName) => ({ projectName }) =>  (
     updateProjectName(project, projectName)
   );
-    
+
   render() {
     const { handleSubmit, handleEditProjectSubmit, project, updateProjectName } = this.props;
-    
+
     return (
       <form onSubmit={handleSubmit(handleEditProjectSubmit(project, updateProjectName))}>
         <div>
@@ -61,22 +61,22 @@ let EditProjectForm = class extends Component {
 };
 
 const mapStateToProps = state => {
-    const { selectedProjectId, projects } = state;
-    
-    const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId); 
-    const projectName = (projects.items.length > 0 && selectedProjectId) && selectedProject.projectName;
-    
-    return ({
-      selectedProjectId, 
-      initialValues: { projectName }, 
-      project: selectedProject
-    })
-}
+  const { selectedProjectId, projects } = state;
+
+  const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);
+  const projectName = (projects.items.length > 0 && selectedProjectId) && selectedProject.projectName;
+
+  return ({
+    selectedProjectId,
+    initialValues: { projectName },
+    project: selectedProject
+  });
+};
 
 EditProjectForm = reduxForm({
   form: 'EditProjectForm', // a unique identifier for this form
 })(EditProjectForm);
 
-EditProjectForm = connect(mapStateToProps , { updateProjectName })(EditProjectForm);
+EditProjectForm = connect(mapStateToProps, { updateProjectName })(EditProjectForm);
 
 export default EditProjectForm;

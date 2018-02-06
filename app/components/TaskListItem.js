@@ -1,11 +1,11 @@
-// // delete 
+// // delete
 // import React from 'react';
 // import PropTypes from 'prop-types';
 // import FontAwesome from 'react-fontawesome';
-// 
+//
 // export default function TaskListItem(props) {
 //   const { handleClick, isActive, isSelected, taskName, taskTime  } = props;
-//   
+//
 //   return(
 //     <div className={`list-item ${isActive ? 'active' : ''} ${isSelected ? 'selected' : ''}`} onClick={handleClick}>
 //       <div className="timesheet-col1 timesheet-col">
@@ -22,7 +22,7 @@
 //     </div>
 //   );
 // }
-// 
+//
 // TaskListItem.propTypes = {
 //   col1Text: PropTypes.string,
 //   col2Text: PropTypes.string

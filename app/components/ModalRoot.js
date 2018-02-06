@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { store } from  '../index.js';
 
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 
 // import { configureStore } from '../store/configureStore';
 // const store = configureStore();
@@ -48,4 +48,4 @@ export default class ModalRoot extends Component {
 
 ModalRoot.propTypes = {
   children: PropTypes.object.isRequired,
-}
+};

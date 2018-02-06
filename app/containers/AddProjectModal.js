@@ -11,40 +11,40 @@ import SingleInputForm from '../components/SingleInputForm';
 class AddProjectModal extends Component {
   handleAddProject({ singleInput: projectName }) {
     const { changeModalType, postProject, projects } = this.props;
-    
+
     const projectNames = projects.map((project) => project.projectName);
-    
+
     if (!hasAnyValue(projectName)) {
       throw new SubmissionError({
-        singleInput: 'Project name is required' 
-      })
-    }    
-    
+        singleInput: 'Project name is required'
+      });
+    }
+
     if (isDuplicate(projectName, projectNames)) {
       throw new SubmissionError({
         singleInput: `A project with the name '${projectName}' already exists`
-      })
-    }    
-    
+      });
+    }
+
     // this.toggleIsContentWaiting();
     postProject(projectName);
     changeModalType('ADD_TASKS');
-  } 
-  
-  render () {
+  }
+
+  render() {
     const { lastSavedProjectName } = this.props;
-    
+
     return (
       <SingleInputForm
         childContainerClass="form-container onboarding-form"
         fieldAnimationName="bounceInDown-second"
         formName="projectName"
         handleFormSubmit={this.handleAddProject.bind(this)}
-        isModalActive={true}
-        isOnlyInput={true}
+        isModalActive
+        isOnlyInput
         parentContainerClass="fullscreen-container"
         placeholder="Project Name"
-        shouldRenderSubmitButton={true}
+        shouldRenderSubmitButton
         title="Add a project name"
         titleAnimationName="bounceInDown"
       />
@@ -54,19 +54,19 @@ class AddProjectModal extends Component {
 
 const mapStateToProps = state => {
   const { projects } = state;
-  
-  const lastSavedProjectName = projects.length > 0 
-    ? projects.items[projects.items.length - 1].projectName 
-    : null; 
-    
+
+  const lastSavedProjectName = projects.length > 0
+    ? projects.items[projects.items.length - 1].projectName
+    : null;
+
   return {
     lastSavedProjectName,
     projects: projects.items
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, { changeModalType, postProject })(AddProjectModal);
 
 AddProjectModal.propTypes = {
-  
-}
+
+};

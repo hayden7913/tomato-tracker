@@ -3,7 +3,6 @@ import { moveCardsKeyboard } from '../actions/projectActions';
 
 export const handleKeyDown = (evt) => {
   return (dispatch, getState) => {
-
     const evtobj = window.event ? event : evt;
     const keycode = evtobj.keyCode;
 
@@ -13,7 +12,7 @@ export const handleKeyDown = (evt) => {
       case 'ARROW_UP':
       case 'ARROW_DOWN':
         // dispatch(moveCardsKeyboard(key, evt));
-      break;
+        break;
       case 'G':
         if (evtobj.ctrlKey) {
           evtobj.preventDefault();
@@ -21,7 +20,7 @@ export const handleKeyDown = (evt) => {
             type: 'TOGGLE_CONFIG',
           });
         }
-      break;
+        break;
     }
-  }
-}
+  };
+};

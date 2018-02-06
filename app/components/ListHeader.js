@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ListHeader(props) {
-   const {col1Title, col2Title } = props;
-  
+  const {col1Title, col2Title } = props;
+
   return(
     <div className="list-item list-item-header">
       <div className="timesheet-col1 timesheet-col">
@@ -20,4 +20,4 @@ export default function ListHeader(props) {
 ListHeader.propTypes = {
   col1Title: PropTypes.string,
   col2Title: PropTypes.string,
-}
+};

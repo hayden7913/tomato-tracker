@@ -1,4 +1,4 @@
-const projectsN = {
+export const projectsN = {
   hasFetched: true,
   isFetching: false,
   items: [
@@ -195,5 +195,3 @@ const projectsN = {
   ],
   queue: null
 };
-
-module.exports = projectsN;

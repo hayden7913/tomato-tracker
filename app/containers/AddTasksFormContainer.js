@@ -1,4 +1,4 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
@@ -54,7 +54,7 @@ let AddTasksFormContainer = class extends Component {
     if (isDuplicate(taskName, taskNames)) {
       throw new SubmissionError({
         taskName: `A task with the name '${taskName}' already exists`,
-      })
+      });
     }
 
     const newTask = {
@@ -63,7 +63,7 @@ let AddTasksFormContainer = class extends Component {
       recordedTime: 0,
       shortId: shortid.generate(),
       shouldDelete: false
-    }
+    };
 
     addTempTask(newTask);
     reset('taskName');
@@ -85,7 +85,7 @@ let AddTasksFormContainer = class extends Component {
     if (!tasksToSubmit.length) {
       throw new SubmissionError({
         taskName: 'Please add at least one task'
-      })
+      });
     }
 
     updateTasks(selectedProject, tasks);
@@ -106,20 +106,20 @@ let AddTasksFormContainer = class extends Component {
     this.deleteButtonRefs[taskId].blur();
   }
 
-renderFormTask (task){
+  renderFormTask(task) {
     const { shouldDelete, taskName, shortId } = task;
 
     return (
       <div className="task-form-list-item" key={shortid.generate()}>
         <div className="button-wrapper" >
           <button
-            className={`${shouldDelete ? "task-restore" : "task-delete" } circular-delete`}
+            className={`${shouldDelete ? 'task-restore' : 'task-delete' } circular-delete`}
             ref={el => this.deleteButtonRefs[shortId] = el}
             onClick={this.handleDeleteButtonClick(shortId)}
             onMouseOver={this.handleDeleteButtonMouseOver(shortId)}
             onMouseOut={this.handleDeleteButtonMouseOut(shortId)}
           >
-              { shouldDelete ? "Restore": <div className="icon-close"></div> }
+              { shouldDelete ? 'Restore' : <div className="icon-close"></div> }
           </button>
         </div>
         <div className="name-wrapper">
@@ -137,23 +137,23 @@ renderFormTask (task){
         >
           <AddTasksForm
             {...this.props}
-            childContainerClass={isModalActive ? "form-container onboarding-form": "" }
-            handleFormSubmit={/*handleFormSubmit ? handleFormSubmit(formTasks) :*/ this.handleFormSubmit.bind(this)}
+            childContainerClass={isModalActive ? 'form-container onboarding-form' : '' }
+            handleFormSubmit={/* handleFormSubmit ? handleFormSubmit(formTasks) :*/ this.handleFormSubmit.bind(this)}
             handleTaskSubmit={this.handleAddTask.bind(this)}
-            parentContainerClass={isOnboardingActive ? "fullscreen-container": (formAnimationName || "")}
+            parentContainerClass={isOnboardingActive ? 'fullscreen-container' : (formAnimationName || '')}
             renderFormTask={this.renderFormTask.bind(this)}
             shouldAutoFocus={isModalActive}
         />
       </RemoteSubmitForm>
     );
   }
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
   const { customForm, selectedProjectId, modal, projects } = state;
   const { isModalActive, isOnboardingActive } = modal;
   const formTasks = customForm.taskForm.tasks;
-  console.log(state)
+  console.log(state);
   const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
 
@@ -169,8 +169,8 @@ const mapStateToProps = (state, ownProps) => {
     isOnboardingActive,
     tasks,
     formTasks
-  }
-}
+  };
+};
 
 
 AddTasksFormContainer = reduxForm({
@@ -193,4 +193,4 @@ export default AddTasksFormContainer = connect(mapStateToProps, {
 AddTasksFormContainer.propTypes = {
   handleSubmit: PropTypes.func,
   // tasks: PropTypes.array.isRequired,
-}
+};

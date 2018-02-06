@@ -29,9 +29,8 @@ class Timer extends Component {
     const { intervalId, isTimerActive } = this.props;
 
     if (isTimerActive === false) {
-      clearInterval(intervalId)
+      clearInterval(intervalId);
     }
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,7 +57,7 @@ class Timer extends Component {
     return taskIds.includes(selectedTaskId);
   }
 
-  timer () {
+  timer() {
     const {
       alarmSoundSrc,
       decrementTimer,
@@ -130,7 +129,6 @@ class Timer extends Component {
     }
 
     this.handleTimerStart();
-
   }
 
   render() {
@@ -146,7 +144,7 @@ class Timer extends Component {
       <div>
         <TimeDisplay
           isTimerActive={isTimerActive}
-          isTimerControlActive={true}
+          isTimerControlActive
           setStartTime={this.handleSetStartTime(selectedTaskId)}
           startCount={startTime}
           time={remainingTime}
@@ -172,8 +170,8 @@ const mapStateToProps = state => {
     selectedProject,
     startTime,
     projects: projects.items
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, {
   decrementTimer,

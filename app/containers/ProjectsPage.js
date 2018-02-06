@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux'
+import { push } from 'react-router-redux';
 import shortid from 'shortid';
 
 import { secondsToHMMSS } from '../helpers/time';
@@ -28,14 +28,14 @@ import Timesheet from '../components/Timesheet';
 import TotalTime from '../components/TotalTime';
 
 class ProjectsPage extends Component {
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
       isProjectSelectTipActive: sessionStorage.isProjectSelectTipActive !== undefined
         ? JSON.parse(sessionStorage.isProjectSelectTipActive)
         : true
-    }
+    };
   }
 
   static defaultProps = {
@@ -70,7 +70,7 @@ class ProjectsPage extends Component {
   }
 
   handleEditOptionClick = (project) => (evt) => {
-    evt.stopPropagation()
+    evt.stopPropagation();
     const { push, setSelectedProject } = this.props;
 
     setSelectedProject(project.shortId);
@@ -80,7 +80,7 @@ class ProjectsPage extends Component {
   handleListItemClick = (projectId) => () => {
     const { isTimerActive, setSelectedProject, toggleTimer } = this.props;
     if (isTimerActive) {
-     toggleTimer();
+      toggleTimer();
     }
 
     setSelectedProject(projectId);
@@ -93,13 +93,13 @@ class ProjectsPage extends Component {
     this.setState({ isProjectSelectTipActive: false });
   }
 
-  renderProject (project){
+  renderProject(project) {
     const { changeActiveContextMenu, projects, selectedProjectId } = this.props;
     const { projectName, shortId } = project;
 
     const totalTime =
       project.tasks.length > 0
-        ? project.tasks.map(task => task.recordedTime).reduce((a,b) => a + b)
+        ? project.tasks.map(task => task.recordedTime).reduce((a, b) => a + b)
         : 0;
 
     return (
@@ -113,7 +113,7 @@ class ProjectsPage extends Component {
         time={totalTime}
       >
         <ContextMenu
-          className='list-item-context-menu'
+          className="list-item-context-menu"
           onMenuClick={changeActiveContextMenu}
           parentId={shortId}
         >
@@ -142,9 +142,9 @@ class ProjectsPage extends Component {
         return 0;
       }
 
-      return project.tasks.map(task => Number(task.recordedTime)).reduce((a,b) => a + b);
+      return project.tasks.map(task => Number(task.recordedTime)).reduce((a, b) => a + b);
     })
-    .reduce((a,b) => a + b);
+    .reduce((a, b) => a + b);
   }
 
   render() {
@@ -153,7 +153,7 @@ class ProjectsPage extends Component {
     const reverseProjects = projects.slice().reverse();
     const totalTime = this.getTotalTime();
 
-    if (false){
+    if (false) {
       return <div className="loader">Loading...</div>;
     }
 
@@ -175,7 +175,7 @@ class ProjectsPage extends Component {
           ? <Timesheet
               buttonText="NEW PROJECT"
               handleButtonClick={this.handleAddButtonClick.bind(this)}
-              titleText={"Projects"}
+              titleText={'Projects'}
             >
               <List className="timesheet-list list" items={projects} renderItem={this.renderProject.bind(this)}/>
               <TotalTime time={secondsToHMMSS(totalTime)} />
@@ -187,7 +187,7 @@ class ProjectsPage extends Component {
                 onActionButtonClick={this.handleAddButtonClick.bind(this)}
               />
               <Modal modalClass={`${isOnboardingActive ? 'fullscreen-modal' : 'normal-modal'}`}
-                rootModalClass={`${ isOnboardingActive? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
+                rootModalClass={`${ isOnboardingActive ? 'unfold' : 'roadrunner'} ${ isModalClosing ? 'out' : ''}`}
               />
           </div>
         }

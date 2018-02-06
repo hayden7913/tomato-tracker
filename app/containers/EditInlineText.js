@@ -7,29 +7,29 @@ import { timeStringToSeconds } from '../helpers/time';
 export default class TopNavbarEditableText extends Component {
   constructor() {
     super();
-    
+
     this.state = {
       message: 'Click to Edit'
     };
 
     this.dataChanged = this.dataChanged.bind(this);
   }
-  
+
   dataChanged(data) {
     const { handleChange } = this.props;
-    
+
     handleChange(data.message);
   }
 
   customValidateText(text) {
     if (timeStringToSeconds(text) === 'NAN_ERROR') {
-      return false
+      return false;
     }
-    
+
     if (text.length < 0 && text.length > 64)  {
       return false;
     }
-    
+
     return true;
   }
 
@@ -52,7 +52,7 @@ export default class TopNavbarEditableText extends Component {
             border: 0,
           }}
         />
-      );
+    );
   }
 }
 

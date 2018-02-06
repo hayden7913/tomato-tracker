@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function Nav(props) {
@@ -9,7 +9,7 @@ export default function Nav(props) {
     <nav>
       <div className="nav-logo-wrapper">
         {/* <img className="nav-logo-image" src="images/black-white-tomato-timer.png" alt="tomato timer logo"/> */}
-        <h1 className="nav-logo-text"><span>Tomato</span><span className='nav-logo-text-bold'>Tracker</span></h1>
+        <h1 className="nav-logo-text"><span>Tomato</span><span className="nav-logo-text-bold">Tracker</span></h1>
       </div>
           <Link
             className={`nav-link ${activeLink === 'TIMER' ? 'active-link' : ''}`}
@@ -29,4 +29,4 @@ export default function Nav(props) {
 }
 
 Nav.propTypes = {
-}
+};

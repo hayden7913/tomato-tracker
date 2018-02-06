@@ -13,15 +13,15 @@ const renderField = (props) => {
         autoFocus
         autoComplete="off"
         className="form-input fullscreen-input add-project-input"
-        placeholder={"Project Name"}
+        placeholder={'Project Name'}
         type={type}
       />
       {touched && error && <div className="form-error">{error}</div>}
     </div>
-  )
-}
+  );
+};
 
-let ConfigForm = function ConfigForm(props) {
+const ConfigForm = function ConfigForm(props) {
   const {
     handleFormSubmit,
     handleSubmit,
@@ -45,11 +45,11 @@ let ConfigForm = function ConfigForm(props) {
           <button style={{'marginTop': '10px' }} className="fade\-in\-medium\-delayoutline-button" onClick={handleSubmit(handleFormSubmit)}>Submit</button>
         </form>
   );
-}
+};
 
 export default reduxForm({
   form: 'config',
-})(ConfigForm)
+})(ConfigForm);
 
 // ConfigForm.propTypes = {
 //   handleProjectSubmit: PropTypes.func,

@@ -16,7 +16,7 @@ function AddTasksModal(props) {
       fieldAnimationName="bounceInDown-second"
       formAnimationName="bounceInDown"
       titleAnimationName="bounceInDown"
-      title={"Add tasks for project "}
+      title={'Add tasks for project '}
       titleName={selectedProjectName}
     />
   );

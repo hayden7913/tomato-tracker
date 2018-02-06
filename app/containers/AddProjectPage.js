@@ -21,13 +21,13 @@ let AddProjectPage = class extends Component {
 
       throw new SubmissionError({
         singleInput: 'Project name is required'
-      })
+      });
     }
 
     if (isDuplicate(projectName, projectNames)) {
       throw new SubmissionError({
         singleInput: `A project with the name '${projectName}' already exists`,
-      })
+      });
     }
 
     postProject(projectName, newTasks);
@@ -52,8 +52,8 @@ let AddProjectPage = class extends Component {
           title="New Project"
         >
             <SingleInputForm
-              formName={"projectName"}
-              placeholder={"Project Name"}
+              formName={'projectName'}
+              placeholder={'Project Name'}
               remoteSubmitForm={remoteSubmitForm}
               shouldRenderSubmitButton={false}
               onTargetUpdate={this.handleNewProjectSubmit.bind(this)}
@@ -63,21 +63,21 @@ let AddProjectPage = class extends Component {
         </ProjectTaskForm>
     );
   }
-}
+};
 
-  const mapStateToProps = state => {
-    const { customForm, projects } = state;
-    const { remoteSubmitForm, taskForm } = customForm;
-    const { tasks: newTasks} = taskForm;
+const mapStateToProps = state => {
+  const { customForm, projects } = state;
+  const { remoteSubmitForm, taskForm } = customForm;
+  const { tasks: newTasks} = taskForm;
 
-    return {
-      newTasks,
-      projects
-    }
-  }
+  return {
+    newTasks,
+    projects
+  };
+};
 
 export default AddProjectPage = connect(mapStateToProps, { postProject, remoteSubmit })(AddProjectPage);
 
 AddProjectPage.propTypes = {
   queuedProject: PropTypes.string
-}
+};

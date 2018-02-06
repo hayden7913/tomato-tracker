@@ -13,17 +13,17 @@ export default function EditTaskModal(props) {
     <EditTaskForm containerClass="normal-modal-form-container"/>
   );
 }
-// 
+//
 // const mapStateToProps = state => {
 //   const { clickedTaskId } = state;
-//   
+//
 //   return {
 //     clickedTaskId
-//   }  
-// } 
+//   }
+// }
 
 // export default connect(mapStateToProps)(EditTaskModal);
 
 EditTaskModal.propTypes = {
-  
-}
+
+};

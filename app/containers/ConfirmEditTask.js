@@ -2,26 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { closeModal, updateTask, toggleEditTaskForm } from '../actions/indexActions'; 
+import { closeModal, updateTask, toggleEditTaskForm } from '../actions/indexActions';
 
 import Confirm from '../components/Confirm';
 
 const updateTaskAndCloseModal = (updateTaskParams, updateTask, closeModal) => () => {
   updateTask(...updateTaskParams);
   closeModal();
-}
+};
 
 function ConfirmEditTask(props) {
   const { closeModal, oldTime, newTime, payload, updateTask, taskName, toggleEditTaskForm } = props;
   return(
-    <Confirm 
+    <Confirm
       onDangerClick={updateTaskAndCloseModal(payload, updateTask, closeModal)}
       onDangerText={[
-        "Are you sure you want to change the logged time from ",
+        'Are you sure you want to change the logged time from ',
         <span className="confirm-time">{oldTime}</span>,
-        " to ", 
+        ' to ',
         <span className="confirm-time">{newTime}</span>,
-        " ?"
+        ' ?'
       ]}
       onCancel={closeModal}
       title={<h2 className="form-title">Confirm time change for task <span className="grey-title-text">{taskName}</span></h2>}
@@ -32,5 +32,5 @@ function ConfirmEditTask(props) {
 export default connect(null, { closeModal, updateTask, toggleEditTaskForm })(ConfirmEditTask);
 
 ConfirmEditTask.propTypes = {
-  
-}
+
+};

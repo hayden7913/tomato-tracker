@@ -11,7 +11,7 @@ function normalize(dataArray, idKey, objTranformer) {
     const byIdProp = {};
     const newItem = objTranformer ? objTranformer(item) : item;
     allIds.push(newItem[idKey]);
-
+    console.log()
     Object.keys(newItem).forEach((key) => {
       const itemKeyValue = newItem[key];
 
@@ -33,7 +33,7 @@ function normalize(dataArray, idKey, objTranformer) {
   };
 }
 
-const tasks = _.flatMap(projectsN.items, project => project.tasks)
+const tasks = _.flatMap(projectsN.items, project => project.tasks);
 
 // const addShortId = object => object.shortId
 //   ? object

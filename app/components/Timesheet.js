@@ -15,10 +15,10 @@ export default function Timesheet({ buttonText, children, handleButtonClick, tit
             <button
               className="timesheet-add-button material-button" onClick={handleButtonClick}
             >
-                {buttonText}  
-            </button> 
+                {buttonText}
+            </button>
             {/* </div> */}
-        </TimesheetColumn>      
+        </TimesheetColumn>
       </div>
       {children}
   </div>
@@ -26,4 +26,4 @@ export default function Timesheet({ buttonText, children, handleButtonClick, tit
 }
 
 Timesheet.propTypes = {
-}
+};

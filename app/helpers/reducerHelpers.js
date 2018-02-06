@@ -1,19 +1,19 @@
-Array.prototype.mapAndFindById = function (idKey, id, callback) {
+Array.prototype.mapAndFindById = function(idKey, id, callback) {
   return this.map((element, index) => {
     if (element[idKey] === id) {
-      return callback(element, index)
+      return callback(element, index);
     }
 
     return element;
-  })
-}
+  });
+};
 
 Array.prototype.sliceDelete = function(index) {
   return [
     ...this.slice(0, index),
     ...this.slice(index + 1)
-  ]
-}
+  ];
+};
 
 export const keymap = {
   17: 'CONTROL',
@@ -24,15 +24,14 @@ export const keymap = {
   78: 'N',
   88: 'X',
   71: 'G',
-}
+};
 
 export function findIndices(arr, callback) {
   const resultArray = [];
 
   arr.forEach((element, i) => {
-
     if(callback(element)) {
-      resultArray.push(i)
+      resultArray.push(i);
     }
   });
 
@@ -44,7 +43,7 @@ export const filterConsec = (arr) => {
   let hasMatchStopped = false;
 
   return arr.filter((currElement, index, array) => {
-    if(hasMatchStopped){
+    if(hasMatchStopped) {
       return false;
     }
 
@@ -63,13 +62,13 @@ export const filterConsec = (arr) => {
         return true;
       }
     }
-  })
-}
+  });
+};
 
 export function shiftElementsUp(arr, startIndex, endIndex) {
-  const shiftElements = arr.slice(startIndex, endIndex +1);
-  const displacedElement = arr[startIndex -1];
-  const beginArray = arr.slice(0, startIndex-1,);
+  const shiftElements = arr.slice(startIndex, endIndex + 1);
+  const displacedElement = arr[startIndex - 1];
+  const beginArray = arr.slice(0, startIndex - 1, );
   const endArray = arr.slice(endIndex + 1, arr.length);
 
   if (startIndex === 0) {
@@ -81,11 +80,11 @@ export function shiftElementsUp(arr, startIndex, endIndex) {
     ...shiftElements,
     displacedElement,
     ...endArray
-  ])
+  ]);
 }
 
 export function shiftElementsDown(arr, startElement, endElement) {
-  const shiftElements = arr.slice(startElement, endElement +1);
+  const shiftElements = arr.slice(startElement, endElement + 1);
   const displacedElement = arr[endElement + 1];
   const beginArray = arr.slice(0, startElement);
   const endArray = arr.slice(endElement + 2, arr.length);
@@ -99,7 +98,41 @@ export function shiftElementsDown(arr, startElement, endElement) {
     displacedElement,
     ...shiftElements,
     ...endArray
-  ])
+  ]);
+}
+
+export function normalize(dataArray, idKey, objTranformer) {
+  if (!dataArray || dataArray.length === 0) {
+    return {};
+  }
+
+  const byId = {};
+  const allIds = [];
+
+  dataArray.forEach((item) => {
+    const byIdProp = {};
+    const newItem = objTranformer ? objTranformer(item) : item;
+    allIds.push(newItem[idKey]);
+
+    Object.keys(newItem).forEach((key) => {
+      const itemKeyValue = newItem[key];
+
+      if (Array.isArray(itemKeyValue)) {
+        byIdProp[key] = newItem[key].map(subItem => subItem[idKey]);
+      } else {
+        byIdProp[key] = itemKeyValue;
+      }
+    });
+
+    byId[newItem[idKey]] = byIdProp;
+  });
+
+  // const allIds = dataArray.map(item => item[idKey]);
+
+  return {
+    byId,
+    allIds,
+  };
 }
 
 // function updateProjectNameName() {

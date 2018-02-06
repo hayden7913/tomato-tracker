@@ -22,46 +22,46 @@ function Modal(props) {
     EDIT_TASK: EditTaskModal,
     PROJECT_NAG: ProjectNagModal,
     WELCOME: WelcomeModalContainer
-  }
-  
+  };
+
   const {
-    isModalActive, 
+    isModalActive,
     modalClass,
     modalProps,
-    modalType, 
+    modalType,
     rootModalClass,
     style,
     closeModal
   } = props;
-  
+
   if (!isModalActive) {
     return null;
   }
-  
+
   const SpecificModal = MODAL_COMPONENTS[modalType];
   return (
     <RootModal className={rootModalClass}>
       <div className={`modal ${modalClass}`} style={style}>
         <span className="modal-close" onClick={closeModal} role="button">&times;</span>
-        <SpecificModal {...modalProps} />   
+        <SpecificModal {...modalProps} />
       </div>
     </RootModal>
-  );  
+  );
 }
 
 const mapStateToProps = state => {
   const { modal } = state;
   const { isModalActive, modalProps, modalType } = modal;
-  
+
   return {
     isModalActive,
     modalProps,
     modalType
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, { closeModal })(Modal)
+export default connect(mapStateToProps, { closeModal })(Modal);
 
 Modal.propTypes = {
-  
+
 };

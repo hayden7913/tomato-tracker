@@ -6,9 +6,9 @@ import ProductTable from '../components/ProductTable';
 import  '../styles/filterableTable.scss';
 
 const FilterableTable = ({ filter, onFilter }) => {
-    let input;
+  let input;
 
-    return (
+  return (
         <div className="filterableTable">
             <input
                 value={filter}
@@ -16,24 +16,24 @@ const FilterableTable = ({ filter, onFilter }) => {
                 onChange={() => onFilter(input.value)} />
             <ProductTable filter={filter} />
         </div>
-    );
+  );
 };
 
 FilterableTable.propTypes = {
-    filter: PropTypes.string,
-    onFilter: PropTypes.func
+  filter: PropTypes.string,
+  onFilter: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
-    return {
-        filter: state.filter
-    };
+  return {
+    filter: state.filter
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        onFilter: filterText => dispatch(filterTable(filterText))
-    };
+  return {
+    onFilter: filterText => dispatch(filterTable(filterText))
+  };
 };
 
 export default connect(

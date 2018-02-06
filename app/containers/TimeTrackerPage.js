@@ -29,7 +29,6 @@ class TimeTrackerPage extends Component {
     const { isModalActive, selectedProjectId } = this.props;
 
     if (this.props.selectedProjectId && (nextProps.selectedProjectId !== this.props.selectedProjectId) && isModalActive) {
-
       return false;
     }
 
@@ -45,7 +44,7 @@ class TimeTrackerPage extends Component {
 
     // if (!hasFetched) {
     if (false) {
-      return <div className="loader">Loading...</div>
+      return <div className="loader">Loading...</div>;
     }
     return (
         <TimeTracker
@@ -77,8 +76,8 @@ const mapStateToProps = state => {
     selectedProjectId,
     selectedTasks,
     projects: projects.items
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, {
   changeActiveContextMenu,
@@ -97,4 +96,4 @@ export default connect(mapStateToProps, {
 
 TimeTrackerPage.propTypes = {
   projects: PropTypes.array
-}
+};

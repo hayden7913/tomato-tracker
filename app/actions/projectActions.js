@@ -4,75 +4,75 @@ import shortid from 'shortid';
 import { filterConsec, findIndices } from '../helpers/reducerHelpers';
 import { submit } from 'redux-form';
 
-export const ADD_PROJECT = "ADD_PROJECT";
+export const ADD_PROJECT = 'ADD_PROJECT';
 export function addProject(projectName) {
   const newProject = {
     projectName,
     tasks: [],
     shortId: shortid.generate()
-  }
+  };
 
   return {
-    type: "ADD_PROJECT",
+    type: 'ADD_PROJECT',
     project: newProject
-  }
+  };
 }
 
-export const EDIT_PROJECT_NAME_REQUEST = "EDIT_PROJECT_NAME_REQUEST";
+export const EDIT_PROJECT_NAME_REQUEST = 'EDIT_PROJECT_NAME_REQUEST';
 export function updateProjectNameRequest(projectId, projectName) {
   return {
-    type: "EDIT_PROJECT_NAME_REQUEST",
+    type: 'EDIT_PROJECT_NAME_REQUEST',
     projectId,
     projectName
-  }
+  };
 }
 
-export const QUEUE_NEW_PROJECT = "QUEUE_NEW_PROJECT";
+export const QUEUE_NEW_PROJECT = 'QUEUE_NEW_PROJECT';
 export function queueNewProject(projectName) {
   return {
-    type: "QUEUE_NEW_PROJECT",
+    type: 'QUEUE_NEW_PROJECT',
     projectName
-  }
+  };
 }
 
-export const EDIT_TASK_REQUEST = "EDIT_TASK_REQUEST";
+export const EDIT_TASK_REQUEST = 'EDIT_TASK_REQUEST';
 export function editTask(projectId, taskId, toUpdate) {
   return {
-    type: "EDIT_TASK_REQUEST",
+    type: 'EDIT_TASK_REQUEST',
     projectId,
     taskId,
     toUpdate
-  }
+  };
 }
 
-export const UPDATE_TASKS = "UPDATE_TASKS";
+export const UPDATE_TASKS = 'UPDATE_TASKS';
 export function updateTasksInState(projectId, newTasks) {
   return {
-    type: "UPDATE_TASKS",
+    type: 'UPDATE_TASKS',
     projectId,
     newTasks
-  }
+  };
 }
 
-export const SET_SELECTED_PROJECT = "SET_SELECTED_PROJECT";
+export const SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT';
 export function setSelectedProject(projectId) {
   return (dispatch) => {
     dispatch({
-        type: "SET_SELECTED_PROJECT",
-        projectId
-    })
+      type: 'SET_SELECTED_PROJECT',
+      projectId
+    });
 
     localStorage.selectedProjectId = projectId;
-  }
+  };
 }
 
-export const DELETE_TASK_REQUEST = "DELETE_TASK_REQUEST";
+export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
 export function deleteTaskRequest(projectId, taskId) {
   return {
     type: 'DELETE_TASK_REQUEST',
     projectId,
     taskId
-  }
+  };
 }
 
 export const MOVE_TASKS = 'MOVE_TASKS';
@@ -92,7 +92,7 @@ export const moveCardsKeyboard = (key) => {
     }
 
     if (startIndex == undefined) {
-      console.error('move indices undefined')
+      console.error('move indices undefined');
       return null;
     }
 
@@ -104,15 +104,15 @@ export const moveCardsKeyboard = (key) => {
       startIndex,
       endIndex,
     });
-  }
-}
+  };
+};
 
 export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
 export function postProjectRequest(project) {
   return {
     type: 'POST_PROJECT_REQUEST',
     project
-  }
+  };
 }
 
 export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
@@ -121,7 +121,7 @@ export function postProjectSuccess(projectId, databaseId) {
     type: 'POST_PROJECT_SUCCESS',
     projectId,
     databaseId,
-  }
+  };
 }
 
 export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
@@ -131,7 +131,7 @@ export function postTaskSuccess(projectId, taskId, databaseId) {
     projectId,
     taskId,
     databaseId,
-  }
+  };
 }
 
 export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';
@@ -143,7 +143,7 @@ export const fetchProjectsSuccess = (projects) => ({
 export const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 export function fetchProjects() {
   return (dispatch) => {
-    dispatch({ type: 'TOGGLE_FETCHING' })
+    dispatch({ type: 'TOGGLE_FETCHING' });
 
     fetch(`${BASE_URL}/projects`)
     .then((res) => {
@@ -151,8 +151,8 @@ export function fetchProjects() {
     })
     .then(data => {
       dispatch(fetchProjectsSuccess(data.projects));
-    })
-  }
+    });
+  };
 }
 
 export const TOGGLE_SELECTED = 'TOGGLE_SELECTED';
@@ -175,29 +175,28 @@ export const toggleSelected = (projectId, taskId, shouldToggleMultiple) => {
       });
     }
 
-    return dispatch({ type: 'TOGGLE_SELECTED', projectId, taskId})
-  }
-}
+    return dispatch({ type: 'TOGGLE_SELECTED', projectId, taskId});
+  };
+};
 
 export function postProject(projectName, tasks) {
   return (dispatch) => {
-
     const newProject = {
       projectName,
       shortId: shortid.generate(),
       tasks: tasks || [],
-    }
+    };
 
     dispatch(postProjectRequest(newProject));
 
     fetch(
       `${BASE_URL}/projects/projects`,
       {
-          method: "POST",
-          body: JSON.stringify(newProject),
-          headers: new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+        method: 'POST',
+        body: JSON.stringify(newProject),
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
         })
       })
       .then((res) => {
@@ -209,30 +208,28 @@ export function postProject(projectName, tasks) {
 
         dispatch(postProjectSuccess(projectId, databaseId));
         localStorage.selectedProjectId = projectId;
-      })
-
-  }
+      });
+  };
 }
 
 export function postProjectWithTasks(tasks) {
   return (dispatch, getState) => {
-    //dispatch(submit('addProjectForm')).then(() => console.log('hello'))
+    // dispatch(submit('addProjectForm')).then(() => console.log('hello'))
 
     // const newProjectName = getState().projects.queue;
     // console.log(newProjectName);
     // console.log(tasks)
     // dispatch(postProject(newProjectName, tasks));
-  }
+  };
 }
 
 const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
     // delete tasks that do not already exist in the database
     // we assume that taks without the database created id '_id' do not yet exist in the database
 
-    tasks.filter((task) => task.shouldDelete && task._id)
+  tasks.filter((task) => task.shouldDelete && task._id)
       .forEach((task) => dispatch(deleteTask(selectedProject, task)));
-
-  }
+};
 
 const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
   // post tasks that do not already exist in the database
@@ -241,9 +238,9 @@ const postUnsavedTasks = (dispatch, selectedProjectDatabaseId, tasks) => {
     .forEach((task) => {
       selectedProjectDatabaseId
         ? dispatch(postTask(selectedProjectDatabaseId, task))
-        : console.error('database id has not yet updated')
-  });
-}
+        : console.error('database id has not yet updated');
+    });
+};
 
 export function updateTasks(selectedProject, tasks) {
   return (dispatch, getState) => {
@@ -253,25 +250,24 @@ export function updateTasks(selectedProject, tasks) {
 
     postUnsavedTasks(dispatch, selectedProject._id, tasksToSubmit);
     deleteSavedTasks(dispatch, selectedProject, tasks);
-  }
+  };
 }
 
 export function updateProjectName(project, newName) {
   return (dispatch) => {
-
     dispatch(updateProjectNameRequest(project.shortId, newName));
 
     fetch(
       `${BASE_URL}/projects/${project._id}`,
       {
-          method: "PUT",
-          body: JSON.stringify({ projectName: newName,  }),
-          headers: new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        method: 'PUT',
+        body: JSON.stringify({ projectName: newName,  }),
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         })
-      })
-  }
+      });
+  };
 }
 
 export function postTask(projectId, task) {
@@ -279,7 +275,7 @@ export function postTask(projectId, task) {
     fetch(
         `${BASE_URL}/projects/${projectId}`,
       {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify(task),
         headers: new Headers({
           'Accept': 'application/json',
@@ -296,19 +292,19 @@ export function postTask(projectId, task) {
         dispatch(postTaskSuccess(projectId, taskId, databaseId));
       })
       .catch(err => {
-        console.error(err)
-      })
-  }
+        console.error(err);
+      });
+  };
 }
 
 export function updateTask(project, task, toUpdate) {
   return (dispatch) => {
-    dispatch(editTask(project.shortId, task.shortId, toUpdate))
+    dispatch(editTask(project.shortId, task.shortId, toUpdate));
 
     fetch(
       `${BASE_URL}/projects/${project._id}/tasks/${task._id}`,
       {
-        method: "PUT",
+        method: 'PUT',
         body: JSON.stringify(toUpdate),
         headers: new Headers({
           'Accept': 'application/json',
@@ -316,29 +312,29 @@ export function updateTask(project, task, toUpdate) {
         })
       })
       .then((res) => {
-        'console log update success'
-      })
-    }
+        'console log update success';
+      });
+  };
 }
 
-export const DELETE_PROJECT_REQUEST= 'DELETE_PROJECT_REQUEST';
+export const DELETE_PROJECT_REQUEST = 'DELETE_PROJECT_REQUEST';
 export function deleteProject(project) {
   return (dispatch) => {
     dispatch({
       type: 'DELETE_PROJECT_REQUEST',
       project
-    })
+    });
 
     fetch(
       `${BASE_URL}/projects/${project._id}`,
       {
-        method: "DELETE",
+        method: 'DELETE',
         headers: new Headers({
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-      })
-    })
-  }
+        })
+      });
+  };
 }
 
 export function deleteTask(project, task, shouldUpdateLocalState) {
@@ -350,11 +346,11 @@ export function deleteTask(project, task, shouldUpdateLocalState) {
     fetch(
       `${BASE_URL}/projects/${project._id}/tasks/${task._id}`,
       {
-          method: "DELETE",
-          headers: new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        method: 'DELETE',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         })
       });
-  }
+  };
 }

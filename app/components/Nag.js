@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Nag({ actionButtonText, nagMessage, onActionButtonClick, title }) {
-  
   return (
       <div className="nag">
         {title && <h2>{title}</h2>}
@@ -15,4 +14,4 @@ export default function Nag({ actionButtonText, nagMessage, onActionButtonClick,
 }
 
 Nag.propTypes = {
-}
+};

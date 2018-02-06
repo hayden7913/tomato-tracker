@@ -74,12 +74,12 @@ export const modal = (state = defaultState, action) => {
         shouldRenderModal: true,
         modalType: 'CONFIRM',
         modalProps: action.modalProps,
-      }
+      };
     case actions.ADD_MODAL_CLOSING_CLASS:
       return {
         ...state,
         isModalClosing: true
-      }
+      };
     default:
       return state;
   }

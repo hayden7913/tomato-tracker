@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Confirm({ onCancel, onDangerClick, onDangerText, title }) {
-
   return(
     <div className="confirm">
       {title}
@@ -16,4 +15,4 @@ export default function Confirm({ onCancel, onDangerClick, onDangerText, title }
 }
 
 Confirm.propTypes = {
-}
+};

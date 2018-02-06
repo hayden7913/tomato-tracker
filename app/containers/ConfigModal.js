@@ -17,13 +17,13 @@ class ConfigModal extends Component {
 
     const newConfigData = {
       alarmSoundSrc: alarmSound || '/public/sound/clock-ring.mp3'
-    }
+    };
 
     updateConfig(newConfigData);
     closeModal();
   }
 
-  render () {
+  render() {
     return (
       <div>
         <ConfigForm handleFormSubmit={this.handleUpdateConfig.bind(this)} />
@@ -37,11 +37,11 @@ const mapStateToProps = state => {
 
   return {
     projects: projects.items
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, { closeModal, updateConfig })(ConfigModal);
 
 ConfigModal.propTypes = {
 
-}
+};

@@ -16,7 +16,7 @@ export default class TextArea extends React.Component {
       .then(data => this.setState({
         textValue: data[0] ? data[0].featureRequests : '',
         frId: data[0]._id,
-      }))
+      }));
   }
 
   handleChange = (event) => {
@@ -47,7 +47,7 @@ export default class TextArea extends React.Component {
           onChange={this.handleChange}
           placeholder="New Task"
           type="text"
-          style={{ height: "100px", marginTop: "50px" }}
+          style={{ height: '100px', marginTop: '50px' }}
           value={this.state.textValue}
         />
        </div>

@@ -11,10 +11,10 @@ export const addModalClosingClass = () => ({
 export const closeModal = () => {
   return (dispatch) => {
     dispatch(addModalClosingClass());
-    
+
     setTimeout(() => dispatch(toggleModal()), 1500);
-  } 
-} 
+  };
+};
 
 export const TOGGLE_CONFIG = 'TOGGLE_CONFIG';
 export const toggleConfig = () => ({
@@ -24,16 +24,15 @@ export const toggleConfig = () => ({
 export const TOGGLE_ONBOARD_MODE = 'TOGGLE_ONBOARD_MODE';
 export const toggleOnboardMode = () => {
   return (dispatch, getState) => {
-    
     if (!getState().modal.isOnboardingActive) {
       return dispatch({ type: 'TOGGLE_ONBOARD_MODE' });
     }
-    
+
     dispatch(addModalClosingClass());
-    
+
     setTimeout(() => dispatch({ type: 'TOGGLE_ONBOARD_MODE' }), 1500);
-  }
-}
+  };
+};
 export const TOGGLE_ADD_TASKS_FORM = 'TOGGLE_ADD_TASKS_FORM';
 export const toggleAddTasksForm = () => ({
   type: 'TOGGLE_ADD_TASKS_FORM',
