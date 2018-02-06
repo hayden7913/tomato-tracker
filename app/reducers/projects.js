@@ -1,5 +1,5 @@
 import  * as actions from '../actions/indexActions'
-import { shiftElementsUp, shiftElementsDown } from '../helpers/customImmutable';
+import { shiftElementsUp, shiftElementsDown } from '../helpers/reducerHelpers';
 
 function tasks(state, action) {
   switch(action.type) {
@@ -17,7 +17,7 @@ function tasks(state, action) {
       });
     case actions.DELETE_TASK_REQUEST:
       return state.mapAndFindById('shortId', action.projectId, (project) => {
-        const deleteIndex = project.tasks.findIndex(task => task['shortId'] === action.taskId);
+        const deleteIndex = project.tasks.findIndex(task => task.shortId === action.taskId);
         const newTasks = project.tasks.sliceDelete(deleteIndex);
 
         return Object.assign({}, project, { tasks: newTasks })

@@ -1,7 +1,7 @@
 import { BASE_URL } from  '../srcConfig/baseURL';
 
 import shortid from 'shortid';
-import { filterConsec, findIndices } from '../helpers/customImmutable';
+import { filterConsec, findIndices } from '../helpers/reducerHelpers';
 import { submit } from 'redux-form';
 
 export const ADD_PROJECT = "ADD_PROJECT";

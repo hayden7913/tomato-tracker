@@ -1,4 +1,4 @@
-import { keymap } from '../helpers/customImmutable';
+import { keymap } from '../helpers/reducerHelpers';
 import { moveCardsKeyboard } from '../actions/projectActions';
 
 export const handleKeyDown = (evt) => {

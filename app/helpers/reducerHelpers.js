@@ -10,9 +10,9 @@ Array.prototype.mapAndFindById = function (idKey, id, callback) {
 
 Array.prototype.sliceDelete = function(index) {
   return [
-      ...this.slice(0, index),
-      ...this.slice(index + 1)
-    ]
+    ...this.slice(0, index),
+    ...this.slice(index + 1)
+  ]
 }
 
 export const keymap = {
@@ -31,9 +31,9 @@ export function findIndices(arr, callback) {
 
   arr.forEach((element, i) => {
 
-  if(callback(element)) {
-    resultArray.push(i)
-  }
+    if(callback(element)) {
+      resultArray.push(i)
+    }
   });
 
   return resultArray;
@@ -81,7 +81,7 @@ export function shiftElementsUp(arr, startIndex, endIndex) {
     ...shiftElements,
     displacedElement,
     ...endArray
-    ])
+  ])
 }
 
 export function shiftElementsDown(arr, startElement, endElement) {
@@ -96,10 +96,10 @@ export function shiftElementsDown(arr, startElement, endElement) {
 
   return([
     ...beginArray,
-     displacedElement,
+    displacedElement,
     ...shiftElements,
     ...endArray
-    ])
+  ])
 }
 
 // function updateProjectNameName() {

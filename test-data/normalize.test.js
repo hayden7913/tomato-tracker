@@ -40,7 +40,7 @@ const tasks = _.flatMap(projectsN.items, project => project.tasks)
 //   : Object.assign({}, object, { shortId: shortid.generate() });
 
 
-const res = normalize(projectsN.items, 'shortId');
+const res = normalize(projectsN.items, 'shortId' );
 // const res = projectsN;
 
 // Object.keys(res.byId).forEach(key => console.log(res.byId[key]));
