@@ -1,8 +1,5 @@
 /^((?!(\[HMR|\[WDS)).)*$/
 
-☐ Add notification
-☐ Make refactor data todo
-
-
 ☐ rewrite reducers to handle new data shape
 ☐ set up reducer testing
+☐
