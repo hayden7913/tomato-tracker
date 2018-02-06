@@ -6,21 +6,14 @@ import { normalize } from '../helpers/reducerHelpers';
 
 
 const testAction = () => ({
-  type: 'POST_PROJECT_REQUEST',
-  project: {
-    projectName: 'test project',
-    shortId: 'B1p7kXwIz',
-    tasks: [],
-  }
+  type: 'POST_PROJECT_SUCCESS',
+  shortId: 'Bys1v7VLM',
+  databaseId: '5a76a6eb277417001f402a28'
 });
 
 describe('entities reducer', () => {
   it('test the reducer', () => {
-    // console.log(fetchProjects());
-    // console.log(projectsN)
-    const res = entities(sampleEntities, testAction()).projects;
-    // const res = normalize(extractTasks(fetchProjects().projects), 'shortId');
-    // console.log(res);
+    const res = entities(sampleEntities, testAction())//.projects;
     console.log(JSON.stringify(res, null, 2));
   });
 });

@@ -190,7 +190,7 @@ export function postProject(projectName, tasks) {
     dispatch(postProjectRequest(newProject));
 
     fetch(
-      `${BASE_URL}/projects/projects`,
+      `${BASE_URL}/projects`,
       {
         method: 'POST',
         body: JSON.stringify(newProject),

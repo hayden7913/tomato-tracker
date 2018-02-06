@@ -40,6 +40,22 @@ export function entities(state = defaultState, action) {
           allIds: [action.project.shortId, ...state.projects.allIds],
         },
       };
+    case actions.POST_PROJECT_SUCCESS: {
+      console.log(action)
+      const { databaseId, shortId } = action;
+      const project = state.projects.byId[shortId];
+
+      return {
+        ...state,
+        projects: {
+          ...state.projects,
+          byId: {
+            ...state.projects.byId,
+            [shortId]: Object.assign({}, project, { _id: databaseId }),
+          }
+        }
+      };
+    }
     default:
       return state;
   }
