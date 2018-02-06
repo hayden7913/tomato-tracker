@@ -153,7 +153,7 @@ const mapStateToProps = (state, ownProps) => {
   const { customForm, selectedProjectId, modal, projects } = state;
   const { isModalActive, isOnboardingActive } = modal;
   const formTasks = customForm.taskForm.tasks;
-  console.log(state);
+
   const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
 

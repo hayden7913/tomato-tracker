@@ -56,7 +56,6 @@ class ProjectsPage extends Component {
 
   handleAddButtonClick() {
     const { push, setTempTasks } = this.props;
-    console.log(push);
     setTempTasks([]);
     push('/projects/new');
   }

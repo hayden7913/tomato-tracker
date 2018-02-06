@@ -1,22 +1,24 @@
 import { flatMap } from 'lodash';
-import entities, { defaultState }  from './entities';
+import { entities, defaultState }  from './entities';
 import * as actions from '../actions/indexActions';
-import { projectsN } from '../test-data/test-data-projects';
+import { sampleEntities } from '../test-data/test-data-projects';
 import { normalize } from '../helpers/reducerHelpers';
 
-const extractTasks = projects => flatMap(projects.items, project => project.tasks);
 
-const fetchProjects = () => ({
-  type: actions.FETCH_PROJECTS_SUCCESS,
-  projects: projectsN,
-})
-
+const testAction = () => ({
+  type: 'POST_PROJECT_REQUEST',
+  project: {
+    projectName: 'test project',
+    shortId: 'B1p7kXwIz',
+    tasks: [],
+  }
+});
 
 describe('entities reducer', () => {
-  it('should handle ADD_TODO', () => {
+  it('test the reducer', () => {
     // console.log(fetchProjects());
     // console.log(projectsN)
-    const res = entities(defaultState, fetchProjects())
+    const res = entities(sampleEntities, testAction()).projects;
     // const res = normalize(extractTasks(fetchProjects().projects), 'shortId');
     // console.log(res);
     console.log(JSON.stringify(res, null, 2));

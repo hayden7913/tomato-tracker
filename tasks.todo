@@ -2,4 +2,4 @@
 
 ☐ rewrite reducers to handle new data shape
 ☐ set up reducer testing
-☐
+☐ make sure that projects / tasks post / put correctly with new db structure

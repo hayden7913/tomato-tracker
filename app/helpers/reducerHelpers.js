@@ -102,10 +102,6 @@ export function shiftElementsDown(arr, startElement, endElement) {
 }
 
 export function normalize(dataArray, idKey, objTranformer) {
-  if (!dataArray || dataArray.length === 0) {
-    return {};
-  }
-
   const byId = {};
   const allIds = [];
 
