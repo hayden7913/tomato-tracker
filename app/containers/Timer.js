@@ -85,6 +85,7 @@ class Timer extends Component {
     if (remainingTime < 1) {
       const audio = new Audio(alarmSoundSrc);
       audio.play();
+      setTimeout(() => audio.play(), 1000);
 
       clearInterval(intervalId);
       handleTimerComplete();

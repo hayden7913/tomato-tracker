@@ -1,17 +1,8 @@
 /^((?!(\[HMR|\[WDS)).)*$/
 
-
-
-
-✔ Fetch data @done(2018-02-04 02:36)
-  ✔ Get App Component functioning @done(2018-02-04 02:36)
-    ✔ Add logic on bit at a time @done(2018-02-04 02:36)
-
-✔ Add links to Nav component @done(2018-02-04 02:36)
-  ✔ Look up links @done(2018-02-04 02:36)
-  ✔ Add links @done(2018-02-04 02:36)
-  ✔ Rm purple from links @done(2018-02-04 02:43)
-
 ☐ Add notification
-☐ Copy over index.html
-☐ Import icons
+☐ Make refactor data todo
+
+
+☐ rewrite reducers to handle new data shape
+☐ set up reducer testing

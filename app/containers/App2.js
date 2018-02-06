@@ -36,7 +36,7 @@ class App extends Component {
           && <Notification
             title="Time's Up!"
             ignore={false}
-            options={{ icon: 'images/tomato-timer.png' }}
+            options={{ icon: '/public/images/tomato-timer.png' }}
         />}
       </div>
     );

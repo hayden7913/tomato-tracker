@@ -9,17 +9,17 @@ const renderField = (props) => {
   return (
     <div>
       <input
-        {...input} 
+        {...input}
         autoFocus
         autoComplete="off"
-        className="form-input fullscreen-input add-project-input" 
-        placeholder={"Project Name"} 
-        type={type} 
+        className="form-input fullscreen-input add-project-input"
+        placeholder={"Project Name"}
+        type={type}
       />
       {touched && error && <div className="form-error">{error}</div>}
     </div>
   )
-} 
+}
 
 let ConfigForm = function ConfigForm(props) {
   const {
@@ -27,20 +27,20 @@ let ConfigForm = function ConfigForm(props) {
     handleSubmit,
     title
   } = props;
-  
+
   return (
         <form onSubmit={handleSubmit}>
-          {title && 
+          {title &&
             <h2 className="form-title">
-              {title}  
+              {title}
             </h2>
           }
           <div className="">
             <span>Alarm sound: </span>
             <Field component="select" name="alarmSound">
-              <option value="sound/Old-clock-ringing-short.mp3">ringer</option>
-              <option value="sound/endSound.mp3">electronic</option>
-            </Field> 
+              <option value="/public/sound/clock-ring.mp3">ringer</option>
+              <option value="/public/sound/endSound.mp3">electronic</option>
+            </Field>
           </div>
           <button style={{'marginTop': '10px' }} className="fade\-in\-medium\-delayoutline-button" onClick={handleSubmit(handleFormSubmit)}>Submit</button>
         </form>
@@ -48,7 +48,7 @@ let ConfigForm = function ConfigForm(props) {
 }
 
 export default reduxForm({
-  form: 'config', 
+  form: 'config',
 })(ConfigForm)
 
 // ConfigForm.propTypes = {
