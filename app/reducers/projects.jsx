@@ -50,11 +50,11 @@ function tasks(state, action) {
 
       return state.mapAndFindById('shortId', selectedProjectId, (project) => {
         if (key === 'ARROW_DOWN') {
-          newTasks =  shiftElementsUp(activeTasks, startIndex, endIndex);
+          newTasks  = shiftElementsDown(activeTasks, startIndex, endIndex);
         }
 
         if (key === 'ARROW_UP') {
-          newTasks  = shiftElementsDown(activeTasks, startIndex, endIndex);
+          newTasks =  shiftElementsUp(activeTasks, startIndex, endIndex);
         }
 
         return Object.assign({}, project, { tasks: newTasks });
@@ -73,11 +73,6 @@ const defaultState = {
 
 export function projects(state = defaultState, action) {
   switch(action.type) {
-    case 'CHANGE_ACTIVE_EDIT_MENU':
-      return {
-        ...state,
-        activeContextMenuId: action.activeMenuId
-      };
     case actions.TOGGLE_FETCHING:
       return {
         ...state,
@@ -124,12 +119,12 @@ export function projects(state = defaultState, action) {
         ...state,
         queue: action.projectName
       };
-    // case actions.DELETE_TASK_REQUEST:
-    // case actions.EDIT_TASK_REQUEST:
-    // case actions.INCREMENT_TASK_TIME:
+    case actions.DELETE_TASK_REQUEST:
+    case actions.EDIT_TASK_REQUEST:
+    case actions.INCREMENT_TASK_TIME:
     case actions.MOVE_TASKS:
-    // case actions.POST_TASK_SUCCESS:
-    // case actions.TOGGLE_SELECTED:
+    case actions.POST_TASK_SUCCESS:
+    case actions.TOGGLE_SELECTED:
     case actions.UPDATE_TASKS:
       return {
         ...state,

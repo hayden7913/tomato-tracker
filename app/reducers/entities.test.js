@@ -13,6 +13,22 @@ import { normalize } from '../helpers/reducerHelpers';
 // **
 
 
+describe('shift items handlder', () => {
+  const action = {
+    type: 'SHIFT_ITEMS',
+    startIndex: 0,
+    endIndex: 1,
+    keyPressed: 'ARROW_DOWN',
+    entity: 'projects',
+  };
+
+  it('reorders allId elements', () => {
+    const dataName = 'mv';
+    expect( entities(data[dataName + 'SS'], action))
+    .toEqual(data[dataName + 'ST']);
+  });
+});
+
 describe('replace items handlder', () => {
   const newItems = {
     aaa123: {
@@ -35,18 +51,18 @@ describe('replace items handlder', () => {
 
   const action = {
     newItems,
-    type: 'BY_ID_REPLACE',
+    type: 'REPLACE_ALL',
     entity: 'projects',
   };
 
-  it('adds a property to byId ', () => {
+  it('repalces byId and allIds', () => {
     const dataName = 'rb';
     expect( entities(data[dataName + 'SS'], action))
     .toEqual(data[dataName + 'ST']);
   });
 });
 
-describe('entities reducer', () => {
+describe('add property handler', () => {
   const newItem = {
     projectName: '**just added**',
     shortId: 'Sks197VLP',
@@ -55,7 +71,7 @@ describe('entities reducer', () => {
 
   const action = {
     newItem,
-    type: 'BY_ID_ADD',
+    type: 'ADD_ITEM',
     entity: 'projects',
     itemIdKey: 'shortId',
   };
@@ -69,7 +85,7 @@ describe('entities reducer', () => {
 
 describe('entities reducer', () => {
   const action = {
-    type: 'BY_ID_DELETE',
+    type: 'DELETE_ITEM',
     itemId: 'Bys1v7VLM',
     entity: 'projects',
   };
@@ -84,7 +100,7 @@ describe('entities reducer', () => {
 
 describe('entities reducer', () => {
   const action = {
-    type: 'BY_ID_UPADTE',
+    type: 'UPDATE_ITEM',
     itemId: 'Bys1v7VLM',
     entity: 'projects',
     updateData: { projectName: 'new project name'}
@@ -103,7 +119,7 @@ describe('entities reducer', () => {
 //     const dataName = 'epr';
 //     expect(
 //       entities(data[dataName + 'FS'], {
-//         type: 'EDIT_PROJECT_NAME_REQUEST',
+//         type: 'UPDATE_ITEM',
 //         itemId: 'Bys1v7VLM',
 //         updateData: { projectName: 'new project name'}
 //       })

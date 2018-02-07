@@ -12,7 +12,7 @@ const updateById = (byId, itemId, updateObject) => {
     ...byId,
     [itemId]: Object.assign({}, item, updateObject)
   };
-}
+};
 
 export const defaultState = {
   entries: {},
@@ -26,27 +26,7 @@ export const defaultState = {
 
 export function entities(state = defaultState, action) {
   switch(action.type) {
-    case 'ALL_IDS_MOVE': {
-      const { entity, itemId } = action;
-      // create newallIds
-      // add new id with spread,
-
-      const newById = {
-        ...state[entity].byId,
-        [newItemId]: newItem,
-      };
-
-      const newEntity = {
-        ...state[entity],
-        byId: newById
-      }
-      // return newEntity
-      return {
-        ...state,
-        [entity]: newEntity,
-      };
-    }
-    case 'BY_ID_ADD': {
+    case actions.ADD_ITEM: {
       const { entity, newItem, itemIdKey } = action;
       const { byId, allIds } = state[entity];
       const newItemId = newItem[itemIdKey];
@@ -60,14 +40,14 @@ export function entities(state = defaultState, action) {
         ...state[entity],
         byId: newById,
         allIds: [newItemId, ...allIds],
-      }
-      // return newEntity
+      };
+
       return {
         ...state,
         [entity]: newEntity,
       };
     }
-    case 'BY_ID_DELETE': {
+    case actions.DELETE_ITEM: {
       const { itemId, entity } = action;
       const { byId, allIds } = state[entity];
 
@@ -76,16 +56,14 @@ export function entities(state = defaultState, action) {
         byId: deletePropImmutable(byId, itemId),
         allIds: allIds.filter(id => id !== itemId),
       };
-      // return allIds.filter(id => id !== itemId);
 
       return {
         ...state,
         [entity]: newEntity,
       };
     }
-    case 'BY_ID_REPLACE': {
+    case actions.REPLACE_ALL: {
       const { entity, newItems } = action;
-      const { byId, allIds } = state[entity];
 
       const newEntity = {
         ...state[entity],
@@ -98,9 +76,31 @@ export function entities(state = defaultState, action) {
         [entity]: newEntity,
       };
     }
-    case 'BY_ID_UPADTE':
-    case actions.POST_PROJECT_SUCCESS:
-    case actions.EDIT_PROJECT_NAME_REQUEST: {
+    case actions.SHIFT_ITEMS: {
+      const { entity, keyPressed, startIndex, endIndex } = action;
+      const { allIds } = state[entity];
+      let newAllIds;
+
+      if (keyPressed === 'ARROW_DOWN') {
+        newAllIds  = shiftElementsDown(allIds, startIndex, endIndex);
+      }
+
+      if (keyPressed === 'ARROW_UP') {
+        newAllIds =  shiftElementsUp(allIds, startIndex, endIndex);
+      }
+
+      const newEntity = {
+        ...state[entity],
+        allIds: newAllIds,
+      };
+
+      return {
+        ...state,
+        [entity]: newEntity,
+      };
+    }
+
+    case actions.UPDATE_ITEM: {
       const { itemId, entity,  updateData } = action;
 
       const newEntity = {
@@ -113,19 +113,6 @@ export function entities(state = defaultState, action) {
         [entity]: newEntity,
       };
     }
-    case actions.DELETE_PROJECT_REQUEST: {
-      const { projectId } = action;
-
-      const newProjects = {
-        ...state.projects,
-        byId: deletePropImmutable(state.projects.byId, projectId)
-      };
-
-      return {
-        ...state,
-        projects: newProjects,
-      };
-    }
     case actions.FETCH_PROJECTS_SUCCESS:
       return {
         ...state,
@@ -133,17 +120,6 @@ export function entities(state = defaultState, action) {
         tasks: normalize(extractTasks(action.projects), 'shortId'),
         hasFetched: true,
         isFetching: false,
-      };
-    case actions.POST_PROJECT_REQUEST:
-      return {
-        ...state,
-        projects: {
-          byId: {
-            ...state.projects.byId,
-            [action.project.shortId]: action.project,
-          },
-          allIds: [action.project.shortId, ...state.projects.allIds],
-        },
       };
     case actions.QUEUE_NEW_PROJECT: {
       return {
@@ -156,19 +132,6 @@ export function entities(state = defaultState, action) {
         ...state,
         isFetching: !state.isFetching,
       };
-    case actions.DELETE_TASK_REQUEST: {
-      const { taskId } = action;
-
-      const newProjects = {
-        ...state.tasks,
-        byId: deletePropImmutable(state.tasks.byId, projectId)
-      };
-
-      return {
-        ...state,
-        tasks: newProjects,
-      };
-    }
     default:
       return state;
   }
