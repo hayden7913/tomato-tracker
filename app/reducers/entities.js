@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 import  * as actions from '../actions/indexActions';
 import { deletePropImmutable, normalize, shiftElementsUp, shiftElementsDown } from '../helpers/reducerHelpers';
 

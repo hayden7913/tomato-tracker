@@ -4,6 +4,12 @@ import shortid from 'shortid';
 import { filterConsec, findIndices } from '../helpers/reducerHelpers';
 import { submit } from 'redux-form';
 
+export const ADD_ITEM = 'ADD_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const REPLACE_ALL = 'REPLACE_ALL';
+export const SHIFT_ITEMS = 'SHIFT_ITEMS';
+export const UPDATE_ITEM = 'UPDATE_ITEM';
+
 export const ADD_PROJECT = 'ADD_PROJECT';
 export function addProject(projectName) {
   const newProject = {
