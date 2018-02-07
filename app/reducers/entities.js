@@ -48,14 +48,18 @@ export function entities(state = defaultState, action) {
           allIds: [action.project.shortId, ...state.projects.allIds],
         },
       };
-    case actions.POST_PROJECT_SUCCESS: {
+    case actions.POST_PROJECT_SUCCESS:
+    case actions.EDIT_PROJECT_NAME_REQUEST: {
       const { byId } = state.projects;
-      const { databaseId, shortId } = action;
+      const { itemId, updateData } = action;
 
       return {
         ...state,
-        projects: updateById(byId, shortId, { _id: databaseId}),
-      }
+        projects: {
+          ...state.projects,
+          byId: updateById(byId, itemId, updateData),
+        },
+      };
     }
     default:
       return state;

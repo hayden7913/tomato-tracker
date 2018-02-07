@@ -1,13 +1,36 @@
-export const sampleEntities = {
+export const  dprSS = {
   hasFetched: true,
   isFetching: false,
   projects: {
     byId: {
       Bys1v7VLM: {
-        // _id: '5a76a6eb277417001f402a28',
         projectName: 'tt upgrade planning / design',
         shortId: 'Bys1v7VLM',
-        __v: 0,
+        tasks: [
+          'SyxAeDXNLG',
+          'BkelVGoLUM',
+        ]
+      },
+    }
+  }
+}
+
+export const dprFS = {
+  hasFetched: true,
+  isFetching: false,
+  projects: {
+    byId: {
+      Bys1v7VLM: {
+        projectName: 'tt upgrade planning / design',
+        shortId: 'Bys1v7VLM',
+        tasks: [
+          'SyxAeDXNLG',
+          'BkelVGoLUM',
+        ]
+      },
+      Ayt1v7VLK: {
+        projectName: 'tt upgrade planning / design',
+        shortId: 'Ayt1v7VLK',
         tasks: [
           'SyxAeDXNLG',
           'BkelVGoLUM',

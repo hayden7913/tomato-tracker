@@ -206,7 +206,7 @@ export function postProject(projectName, tasks) {
         const projectId = data.shortId;
         const databaseId = data._id;
 
-        dispatch(postProjectSuccess(projectId, databaseId));
+        dispatch(postProjectSuccess(projectId, { _id: databaseId }));
         localStorage.selectedProjectId = projectId;
       });
   };

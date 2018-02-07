@@ -1,32 +1,61 @@
 import { flatMap } from 'lodash';
+import prettyPrint from '../helpers/prettyPrint';
 import { entities, defaultState }  from './entities';
 import * as actions from '../actions/indexActions';
-import { sampleEntities } from '../test-data/test-data-projects';
+import * as data from '../test-data/start-index';
+// import { dataTarget, simpleTarget } from '../test-data/data-target';
 import { normalize } from '../helpers/reducerHelpers';
 
+console.log(data);
 const testAction = () => ({
   type: 'POST_PROJECT_SUCCESS',
   shortId: 'Bys1v7VLM',
   databaseId: '5a76a6eb277417001f402a28'
 });
 
-const updateById =  (byId, oldItemId, updateObject) => {
-  const oldItem = byId[oldItemId];
-  return {
-    ...byId,
-    [oldItemId]: Object.assign({}, oldItem, updateObject)
-  };
-}
 
-// const getOldItem = (byId, oldItemId) => byId[oldItemId];
 describe('entities reducer', () => {
+  const action = {
+    type: 'EDIT_PROJECT_NAME_REQUEST',
+    itemId: 'Bys1v7VLM',
+    updateData: { projectName: 'new project name'}
+  }
   it('test the reducer', () => {
-
-    // console.log('top', sampleEntities.projects);
-    //const res = entities(sampleEntities,testAction())//.projects;
-    // console.log(sampleEntites, '**************************');
-    const res = (entities(sampleEntities, testAction()));
-    // const res = updateById(sampleEntities.projects.byId, testAction().shortId, { _id: testAction().databaseId});
-    console.log(JSON.stringify(res, null, 2));
+    const dataName = 'dpr';
+    expect( entities(data[dataName + 'SS'], action))
+    .toEqual(data[dataName + 'ST']);
   });
 });
+
+describe('entities reducer', () => {
+  it('test the reducer', () => {
+    const dataName = 'epr';
+    expect(
+      entities(data[dataName + 'FS'], {
+        type: 'EDIT_PROJECT_NAME_REQUEST',
+        itemId: 'Bys1v7VLM',
+        updateData: { projectName: 'new project name'}
+      })
+    ).toEqual(data[dataName + 'FT']);
+  });
+});
+//
+// describe('entities reducer', () => {
+//   it('test the reducer', () => {
+//     expect(
+//       entities(inputState, {
+//         type: 'EDIT_PROJECT_NAME_REQUEST',
+//         itemId: 'Bys1v7VLM',
+//         updateData: { projectName: 'new project name'}
+//       })
+//     ).toEqual(expectedState);
+//   // ).toEqual(null);
+//     // expect(entities(dataStart, testAction).toEqual(dataTarget))
+//   });
+// });
+
+// describe('function test', () => {
+//   it('test the function', () => {
+//     expect(entities(dataStart, testAction).toEqual(dataTarget))
+//   });
+// }); it('should handle ADD_TODO', () => {
