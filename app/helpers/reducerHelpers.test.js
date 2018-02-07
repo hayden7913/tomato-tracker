@@ -2,7 +2,7 @@
 
 describe('addPropImmutable', () => {
   const action = {
-    type: 'BYID_DELETE',
+    type: 'BY_ID_DELETE',
     itemId: 'Bys1v7VLM',
     entity: 'projects',
   };

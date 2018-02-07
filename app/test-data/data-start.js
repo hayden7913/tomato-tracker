@@ -11,7 +11,8 @@ export const  hiSS= {
           'BkelVGoLUM',
         ]
       },
-    }
+    },
+    allIds: ['abc123'],
   }
 }
 

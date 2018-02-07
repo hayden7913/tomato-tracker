@@ -26,10 +26,10 @@ export const defaultState = {
 
 export function entities(state = defaultState, action) {
   switch(action.type) {
-    case 'BYID_ADD': {
-      const { entity, newItem, itemIdKey } = action;
-      const byId = state[entity];
-      const newItemId = newItem[itemIdKey];
+    case 'ALL_IDS_MOVE': {
+      const { entity, itemId } = action;
+      // create newallIds
+      // add new id with spread,
 
       const newById = {
         ...state[entity].byId,
@@ -46,6 +46,54 @@ export function entities(state = defaultState, action) {
         [entity]: newEntity,
       };
     }
+    case 'BY_ID_ADD': {
+      const { entity, newItem, itemIdKey } = action;
+      const { byId, allIds } = state[entity];
+      const newItemId = newItem[itemIdKey];
+
+      const newById = {
+        ...byId,
+        [newItemId]: newItem,
+      };
+
+      const newEntity = {
+        ...state[entity],
+        byId: newById,
+        allIds: [newItemId, ...allIds],
+      }
+      // return newEntity
+      return {
+        ...state,
+        [entity]: newEntity,
+      };
+    }
+    case 'BY_ID_DELETE': {
+      const { itemId, entity } = action;
+
+      const newEntity = {
+        ...state[entity],
+        byId: deletePropImmutable(state[entity].byId, itemId),
+      };
+      return {
+        ...state,
+        [entity]: newEntity,
+      };
+    }
+    case 'BY_ID_UPADTE':
+    case actions.POST_PROJECT_SUCCESS:
+    case actions.EDIT_PROJECT_NAME_REQUEST: {
+      const { itemId, entity,  updateData } = action;
+
+      const newEntity = {
+        ...state[entity],
+        byId: updateById(state[entity].byId, itemId, updateData),
+      };
+
+      return {
+        ...state,
+        [entity]: newEntity,
+      };
+    }
     case actions.DELETE_PROJECT_REQUEST: {
       const { projectId } = action;
 
@@ -57,18 +105,6 @@ export function entities(state = defaultState, action) {
       return {
         ...state,
         projects: newProjects,
-      };
-    }
-    case 'BYID_DELETE': {
-      const { itemId, entity } = action;
-
-      const newEntity = {
-        ...state[entity],
-        byId: deletePropImmutable(state[entity].byId, itemId),
-      };
-      return {
-        ...state,
-        [entity]: newEntity,
       };
     }
     case actions.FETCH_PROJECTS_SUCCESS:
@@ -90,21 +126,6 @@ export function entities(state = defaultState, action) {
           allIds: [action.project.shortId, ...state.projects.allIds],
         },
       };
-    case 'BYID_UPADTE':
-    case actions.POST_PROJECT_SUCCESS:
-    case actions.EDIT_PROJECT_NAME_REQUEST: {
-      const { itemId, entity,  updateData } = action;
-
-      const newEntity = {
-        ...state[entity],
-        byId: updateById(state[entity].byId, itemId, updateData),
-      };
-
-      return {
-        ...state,
-        [entity]: newEntity,
-      };
-    }
     case actions.QUEUE_NEW_PROJECT: {
       return {
         ...state,

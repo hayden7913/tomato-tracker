@@ -1,4 +1,4 @@
-export const  hiSS= {
+export const  aaSS= {
   hasFetched: true,
   isFetching: false,
   projects: {
@@ -11,11 +11,12 @@ export const  hiSS= {
           'BkelVGoLUM',
         ]
       },
-    }
+    },
+    allIds: ['abc123'],
   }
-}
+};
 
-export const hiFS= {
+export const aaFS= {
   hasFetched: true,
   isFetching: false,
   projects: {

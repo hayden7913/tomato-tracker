@@ -1,4 +1,4 @@
-export const  baSS= {
+export const  baSS = {
   hasFetched: true,
   isFetching: false,
   projects: {
@@ -14,9 +14,9 @@ export const  baSS= {
     },
     allIds: ['Bys1v7VLM']
   }
-}
+};
 
-export const baFS= {
+export const baFS = {
   hasFetched: true,
   isFetching: false,
   projects: {

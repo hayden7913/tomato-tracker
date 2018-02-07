@@ -12,6 +12,7 @@ import { normalize } from '../helpers/reducerHelpers';
 // **
 // **
 
+
 describe('entities reducer', () => {
   const newItem = {
     projectName: '**just added**',
@@ -21,7 +22,7 @@ describe('entities reducer', () => {
 
   const action = {
     newItem,
-    type: 'BYID_ADD',
+    type: 'BY_ID_ADD',
     entity: 'projects',
     itemIdKey: 'shortId',
   };
@@ -35,7 +36,7 @@ describe('entities reducer', () => {
 
 describe('entities reducer', () => {
   const action = {
-    type: 'BYID_DELETE',
+    type: 'BY_ID_DELETE',
     itemId: 'Bys1v7VLM',
     entity: 'projects',
   };
@@ -63,7 +64,7 @@ describe('entities reducer', () => {
 
 describe('entities reducer', () => {
   const action = {
-    type: 'UPDATE_BYID',
+    type: 'UPDATE_BY_ID',
     itemId: 'Bys1v7VLM',
     entity: 'projects',
     updateData: { projectName: 'new project name'}
@@ -95,3 +96,17 @@ describe('entities reducer', () => {
 //     expect(entities(dataStart, testAction).toEqual(dataTarget))
 //   });
 // }); it('should handle ADD_TODO', () => {
+
+// describe('entities reducer', () => {
+//   const action = {
+//     type: 'ALL_IDS_ADD',
+//     entity: 'projects',
+//     itemId: 'xyz456',
+//   };
+//
+//   it('adds an id to allIds', () => {
+//     const dataName = 'aa';
+//     expect(entities(data[dataName + 'SS'], action))
+//     .toEqual(data[dataName + 'ST']);
+//   });
+// });
