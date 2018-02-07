@@ -4,6 +4,14 @@ import { normalize, shiftElementsUp, shiftElementsDown } from '../helpers/reduce
 
 const extractTasks = projects => _.flatMap(projects, project => project.tasks);
 
+const updateById = (byId, oldItemId, updateObject) => {
+  const oldItem = byId[oldItemId];
+  return {
+    ...byId,
+    [oldItemId]: Object.assign({}, oldItem, updateObject)
+  };
+}
+
 export const defaultState = {
   entries: {},
   groups: {},
@@ -41,20 +49,13 @@ export function entities(state = defaultState, action) {
         },
       };
     case actions.POST_PROJECT_SUCCESS: {
-      console.log(action)
+      const { byId } = state.projects;
       const { databaseId, shortId } = action;
-      const project = state.projects.byId[shortId];
 
       return {
         ...state,
-        projects: {
-          ...state.projects,
-          byId: {
-            ...state.projects.byId,
-            [shortId]: Object.assign({}, project, { _id: databaseId }),
-          }
-        }
-      };
+        projects: updateById(byId, shortId, { _id: databaseId}),
+      }
     }
     default:
       return state;
