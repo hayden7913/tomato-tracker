@@ -1,10 +1,10 @@
-export const  eprST = {
+export const  hiSS= {
   hasFetched: true,
   isFetching: false,
   projects: {
     byId: {
       Bys1v7VLM: {
-        projectName: 'new project name',
+        projectName: 'tt upgrade planning / design',
         shortId: 'Bys1v7VLM',
         tasks: [
           'SyxAeDXNLG',
@@ -15,13 +15,13 @@ export const  eprST = {
   }
 }
 
-export const eprFT = {
+export const hiFS= {
   hasFetched: true,
   isFetching: false,
   projects: {
     byId: {
       Bys1v7VLM: {
-        projectName: 'new project name',
+        projectName: 'tt upgrade planning / design',
         shortId: 'Bys1v7VLM',
         tasks: [
           'SyxAeDXNLG',

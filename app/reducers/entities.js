@@ -1,14 +1,16 @@
 import _ from 'lodash';
+
 import  * as actions from '../actions/indexActions';
 import { deletePropImmutable, normalize, shiftElementsUp, shiftElementsDown } from '../helpers/reducerHelpers';
 
 const extractTasks = projects => _.flatMap(projects, project => project.tasks);
 
-const updateById = (byId, oldItemId, updateObject) => {
-  const oldItem = byId[oldItemId];
+const updateById = (byId, itemId, updateObject) => {
+  const item = byId[itemId];
+
   return {
     ...byId,
-    [oldItemId]: Object.assign({}, oldItem, updateObject)
+    [itemId]: Object.assign({}, item, updateObject)
   };
 }
 
@@ -24,6 +26,26 @@ export const defaultState = {
 
 export function entities(state = defaultState, action) {
   switch(action.type) {
+    case 'BYID_ADD': {
+      const { entity, newItem, itemIdKey } = action;
+      const byId = state[entity];
+      const newItemId = newItem[itemIdKey];
+
+      const newById = {
+        ...state[entity].byId,
+        [newItemId]: newItem,
+      };
+
+      const newEntity = {
+        ...state[entity],
+        byId: newById
+      }
+      // return newEntity
+      return {
+        ...state,
+        [entity]: newEntity,
+      };
+    }
     case actions.DELETE_PROJECT_REQUEST: {
       const { projectId } = action;
 
@@ -37,7 +59,7 @@ export function entities(state = defaultState, action) {
         projects: newProjects,
       };
     }
-    case 'TEST': {
+    case 'BYID_DELETE': {
       const { itemId, entity } = action;
 
       const newEntity = {
@@ -68,17 +90,19 @@ export function entities(state = defaultState, action) {
           allIds: [action.project.shortId, ...state.projects.allIds],
         },
       };
+    case 'BYID_UPADTE':
     case actions.POST_PROJECT_SUCCESS:
     case actions.EDIT_PROJECT_NAME_REQUEST: {
-      const { byId } = state.projects;
-      const { itemId, updateData } = action;
+      const { itemId, entity,  updateData } = action;
+
+      const newEntity = {
+        ...state[entity],
+        byId: updateById(state[entity].byId, itemId, updateData),
+      };
 
       return {
         ...state,
-        projects: {
-          ...state.projects,
-          byId: updateById(byId, itemId, updateData),
-        },
+        [entity]: newEntity,
       };
     }
     case actions.QUEUE_NEW_PROJECT: {

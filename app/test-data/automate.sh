@@ -1,5 +1,3 @@
-dgen() {
-  echo
   start="$1-start.js"
   target="$1-target.js"
 
@@ -8,4 +6,3 @@ dgen() {
 
   echo "export * from './$start';" >> start-index.js
   echo "export * from './$target';" >> start-index.js
-}

@@ -124,9 +124,9 @@ export function projects(state = defaultState, action) {
         ...state,
         queue: action.projectName
       };
-    case actions.DELETE_TASK_REQUEST:
-    case actions.EDIT_TASK_REQUEST:
-    case actions.INCREMENT_TASK_TIME:
+    // case actions.DELETE_TASK_REQUEST:
+    // case actions.EDIT_TASK_REQUEST:
+    // case actions.INCREMENT_TASK_TIME:
     case actions.MOVE_TASKS:
     case actions.POST_TASK_SUCCESS:
     case actions.TOGGLE_SELECTED:

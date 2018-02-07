@@ -1,27 +1,28 @@
-export const  eprST = {
+export const  baSS= {
   hasFetched: true,
   isFetching: false,
   projects: {
     byId: {
       Bys1v7VLM: {
-        projectName: 'new project name',
+        projectName: 'tt upgrade planning / design',
         shortId: 'Bys1v7VLM',
         tasks: [
           'SyxAeDXNLG',
           'BkelVGoLUM',
         ]
       },
-    }
+    },
+    allIds: ['Bys1v7VLM']
   }
 }
 
-export const eprFT = {
+export const baFS= {
   hasFetched: true,
   isFetching: false,
   projects: {
     byId: {
       Bys1v7VLM: {
-        projectName: 'new project name',
+        projectName: 'tt upgrade planning / design',
         shortId: 'Bys1v7VLM',
         tasks: [
           'SyxAeDXNLG',

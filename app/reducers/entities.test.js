@@ -11,14 +11,23 @@ import { normalize } from '../helpers/reducerHelpers';
 // **
 // **
 // **
+
 describe('entities reducer', () => {
-  const action = {
-    type: 'DELETE_PROJECT_REQUEST',
-    projectId: 'Bys1v7VLM',
+  const newItem = {
+    projectName: '**just added**',
+    shortId: 'Sks197VLP',
+    tasks: [],
   };
 
-  it('deletes a task', () => {
-    const dataName = 'dpr';
+  const action = {
+    newItem,
+    type: 'BYID_ADD',
+    entity: 'projects',
+    itemIdKey: 'shortId',
+  };
+
+  it('adds a property to byId ', () => {
+    const dataName = 'ba';
     expect( entities(data[dataName + 'SS'], action))
     .toEqual(data[dataName + 'ST']);
   });
@@ -26,7 +35,7 @@ describe('entities reducer', () => {
 
 describe('entities reducer', () => {
   const action = {
-    type: 'TEST',
+    type: 'BYID_DELETE',
     itemId: 'Bys1v7VLM',
     entity: 'projects',
   };
@@ -53,17 +62,33 @@ describe('entities reducer', () => {
 
 
 describe('entities reducer', () => {
-  it('updates a project name', () => {
+  const action = {
+    type: 'UPDATE_BYID',
+    itemId: 'Bys1v7VLM',
+    entity: 'projects',
+    updateData: { projectName: 'new project name'}
+  };
+  // console.log(data[dataName + 'FS'])
+  it('updates a project name via generic entity reducer', () => {
     const dataName = 'epr';
     expect(
-      entities(data[dataName + 'FS'], {
-        type: 'EDIT_PROJECT_NAME_REQUEST',
-        itemId: 'Bys1v7VLM',
-        updateData: { projectName: 'new project name'}
-      })
+      entities(data[dataName + 'FS'], action)
     ).toEqual(data[dataName + 'FT']);
   });
 });
+
+// describe('entities reducer', () => {
+//   it('updates a project name', () => {
+//     const dataName = 'epr';
+//     expect(
+//       entities(data[dataName + 'FS'], {
+//         type: 'EDIT_PROJECT_NAME_REQUEST',
+//         itemId: 'Bys1v7VLM',
+//         updateData: { projectName: 'new project name'}
+//       })
+//     ).toEqual(data[dataName + 'FT']);
+//   });
+// });
 
 // describe('function test', () => {
 //   it('test the function', () => {
