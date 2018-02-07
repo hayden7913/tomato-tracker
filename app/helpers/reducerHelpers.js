@@ -26,6 +26,15 @@ export const keymap = {
   71: 'G',
 };
 
+export function deletePropImmutable(object, removeProp) {
+  return Object.keys(object).reduce((result, key) => {
+    if (key !== removeProp) {
+      result[key] = object[key];
+    }
+    return result;
+  }, {});
+}
+
 export function findIndices(arr, callback) {
   const resultArray = [];
 
