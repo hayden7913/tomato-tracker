@@ -69,11 +69,30 @@ export function entities(state = defaultState, action) {
     }
     case 'BY_ID_DELETE': {
       const { itemId, entity } = action;
+      const { byId, allIds } = state[entity];
 
       const newEntity = {
         ...state[entity],
-        byId: deletePropImmutable(state[entity].byId, itemId),
+        byId: deletePropImmutable(byId, itemId),
+        allIds: allIds.filter(id => id !== itemId),
       };
+      // return allIds.filter(id => id !== itemId);
+
+      return {
+        ...state,
+        [entity]: newEntity,
+      };
+    }
+    case 'BY_ID_REPLACE': {
+      const { entity, newItems } = action;
+      const { byId, allIds } = state[entity];
+
+      const newEntity = {
+        ...state[entity],
+        byId: newItems,
+        allIds: Object.keys(newItems),
+      };
+
       return {
         ...state,
         [entity]: newEntity,

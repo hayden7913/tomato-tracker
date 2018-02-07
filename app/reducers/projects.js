@@ -128,8 +128,8 @@ export function projects(state = defaultState, action) {
     // case actions.EDIT_TASK_REQUEST:
     // case actions.INCREMENT_TASK_TIME:
     case actions.MOVE_TASKS:
-    case actions.POST_TASK_SUCCESS:
-    case actions.TOGGLE_SELECTED:
+    // case actions.POST_TASK_SUCCESS:
+    // case actions.TOGGLE_SELECTED:
     case actions.UPDATE_TASKS:
       return {
         ...state,

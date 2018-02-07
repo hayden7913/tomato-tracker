@@ -1,18 +1,34 @@
-export const  dprST = {
+export const  rbSS= {
   hasFetched: true,
   isFetching: false,
   projects: {
     byId: {
+      Bys1v7VLM: {
+        projectName: 'tt upgrade planning / design',
+        shortId: 'Bys1v7VLM',
+        tasks: [
+          'SyxAeDXNLG',
+          'BkelVGoLUM',
+        ]
+      },
     },
-    allIds: [],
+    allIds: ['abc123'],
   }
-};
+}
 
-export const dprFT = {
+export const rbFS= {
   hasFetched: true,
   isFetching: false,
   projects: {
     byId: {
+      Bys1v7VLM: {
+        projectName: 'tt upgrade planning / design',
+        shortId: 'Bys1v7VLM',
+        tasks: [
+          'SyxAeDXNLG',
+          'BkelVGoLUM',
+        ]
+      },
       Ayt1v7VLK: {
         projectName: 'tt upgrade planning / design',
         shortId: 'Ayt1v7VLK',

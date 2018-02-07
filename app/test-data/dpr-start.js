@@ -11,9 +11,10 @@ export const  dprSS = {
           'BkelVGoLUM',
         ]
       },
-    }
+    },
+    allIds: ['Bys1v7VLM'],
   }
-}
+};
 
 export const dprFS = {
   hasFetched: true,

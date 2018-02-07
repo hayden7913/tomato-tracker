@@ -13,6 +13,39 @@ import { normalize } from '../helpers/reducerHelpers';
 // **
 
 
+describe('replace items handlder', () => {
+  const newItems = {
+    aaa123: {
+      projectName: 'new proj 1',
+      shortId: 'aaa123',
+      tasks: [
+        'SyxAeDXNLG',
+        'BkelVGoLUM',
+      ]
+    },
+    xxx456: {
+      projectName: 'new proj 2',
+      shortId: 'xxx456',
+      tasks: [
+        'SyxAeDXNLG',
+        'BkelVGoLUM',
+      ]
+    },
+  };
+
+  const action = {
+    newItems,
+    type: 'BY_ID_REPLACE',
+    entity: 'projects',
+  };
+
+  it('adds a property to byId ', () => {
+    const dataName = 'rb';
+    expect( entities(data[dataName + 'SS'], action))
+    .toEqual(data[dataName + 'ST']);
+  });
+});
+
 describe('entities reducer', () => {
   const newItem = {
     projectName: '**just added**',
@@ -48,28 +81,15 @@ describe('entities reducer', () => {
   });
 });
 
-describe('entities reducer', () => {
-  const action = {
-    type: 'DELETE_PROJECT_REQUEST',
-    projectId: 'Bys1v7VLM',
-  };
-
-  it('deletes a project', () => {
-    const dataName = 'dpr';
-    expect( entities(data[dataName + 'SS'], action))
-    .toEqual(data[dataName + 'ST']);
-  });
-});
-
 
 describe('entities reducer', () => {
   const action = {
-    type: 'UPDATE_BY_ID',
+    type: 'BY_ID_UPADTE',
     itemId: 'Bys1v7VLM',
     entity: 'projects',
     updateData: { projectName: 'new project name'}
   };
-  // console.log(data[dataName + 'FS'])
+
   it('updates a project name via generic entity reducer', () => {
     const dataName = 'epr';
     expect(
