@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import  * as actions from '../actions/indexActions';
 import { filterProps, normalize, shiftElementsUp, shiftElementsDown } from '../helpers/reducerHelpers';
+import  prettyPrint from '../helpers/prettyPrint';
 
 const extractTasks = projects => _.flatMap(projects, project => project.tasks);
 
@@ -57,6 +58,30 @@ export function entities(state = defaultState, action) {
       return {
         ...state,
         [entity]: newEntity,
+      };
+    }
+    case actions.DELETE_CHILD_ITEM: {
+      const { parentEntity, childEntity, parentItemId, childItemId, childPropKey } = action;
+      const prevChildEntity = state[childEntity];
+      const prevParentEntity = state[parentEntity];
+
+      const newChildEntity = {
+        ...prevChildEntity,
+        byId: filterProps(prevChildEntity.byId,  (key) => key !== childItemId),
+        allIds: prevChildEntity.allIds.filter(id => id !== childItemId),
+      };
+
+      const newParentEntity = {
+        ...prevParentEntity,
+        byId: updateProp(prevParentEntity.byId, parentItemId, {
+          [childPropKey]: prevParentEntity.byId[parentItemId][childPropKey].filter(id => id !== childItemId)
+        })
+      };
+
+      return {
+        ...state,
+        [childEntity]: newChildEntity,
+        [parentEntity]: newParentEntity,
       };
     }
     case actions.REPLACE_ALL: {

@@ -11,7 +11,22 @@ import { normalize } from '../helpers/reducerHelpers';
 // **
 // **
 // **
+describe('delete child item handlder', () => {
+  const action = {
+    type: 'DELETE_CHILD_ITEM',
+    parentEntity: 'projects',
+    childEntity: 'tasks',
+    parentItemId: 'Bys1v7VLM',
+    childItemId: 'BkelVGoLUM',
+    childPropKey: 'tasks'
+  };
 
+  it('deletes a child item', () => {
+    const dataName = 'dci';
+    expect( entities(data[dataName + 'FS'], action))
+    .toEqual(data[dataName + 'FT']);
+  });
+});
 
 describe('update tasks handlder', () => {
   const updateTasks = {

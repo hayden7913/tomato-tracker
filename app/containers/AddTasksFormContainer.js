@@ -42,7 +42,6 @@ let AddTasksFormContainer = class extends Component {
       setTempTasks(tasks);
     }
   }
-
   handleAddTask({ taskName }) {
     const { addTempTask, formTasks: tasks, reset } = this.props;
     const taskNames = tasks.map(task => task.taskName);
@@ -157,6 +156,7 @@ const mapStateToProps = (state, ownProps) => {
   const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
   const selectedProjectDatabaseId = selectedProject && selectedProject._id;
 
+  console.log(selectedProject)
   const tasks = selectedProject && (ownProps.showTasksForSelectedProject !== false)
     ? selectedProject.tasks.map(task => Object.assign(task, { shouldDelete: false }))
     : [];

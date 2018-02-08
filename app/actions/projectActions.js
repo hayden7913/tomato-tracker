@@ -9,6 +9,7 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const REPLACE_ALL = 'REPLACE_ALL';
 export const SHIFT_ITEMS = 'SHIFT_ITEMS';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const DELETE_CHILD_ITEM = 'DELETE_CHILD_ITEM';
 
 
 export const EDIT_PROJECT_NAME_REQUEST = 'EDIT_PROJECT_NAME_REQUEST';
@@ -52,13 +53,25 @@ export function setSelectedProject(projectId) {
 }
 
 export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
-export function deleteTaskRequest(projectId, itemId) {
+export function deleteTaskRequest(projectId, taskId) {
   return {
-    type: 'DELETE_TASK_REQUEST',
-    projectId,
-    itemId
+    type: 'DELETE_CHILD_ITEM',
+    childEntity: 'tasks',
+    childItemId: taskId,
+    childPropKey: 'tasks',
+    parentEntity: 'projects',
+    parentItemId: projectId,
   };
 }
+
+// export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
+// export function deleteTaskRequest(projectId, itemId) {
+//   return {
+//     type: 'DELETE_TASK_REQUEST',
+//     projectId,
+//     itemId
+//   };
+// }
 
 export const MOVE_TASKS = 'MOVE_TASKS';
 export const moveCardsKeyboard = (key) => {
@@ -107,19 +120,20 @@ export function postProjectRequest(project) {
 export const POST_PROJECT_SUCCESS = 'POST_PROJECT_SUCCESS';
 export function postProjectSuccess(projectId, databaseId) {
   return {
-    type: 'POST_PROJECT_SUCCESS',
-    projectId,
-    databaseId,
+    type: 'UPDATE_ITEM',
+    itemId: projectId,
+    entity: 'projects',
+    updateData: { _id: databaseId },
   };
 }
 
 export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
-export function postTaskSuccess(projectId, itemId, databaseId) {
+export function postTaskSuccess(itemId, databaseId) {
   return {
-    type: 'POST_TASK_SUCCESS',
-    projectId,
+    type: 'UPDATE_ITEM',
+    entity: 'tasks',
+    updateData: { _id: databaseId },
     itemId,
-    databaseId,
   };
 }
 
@@ -210,20 +224,10 @@ export function postProject(projectName, tasks) {
   };
 }
 
-export function postProjectWithTasks(tasks) {
-  return (dispatch, getState) => {
-    // dispatch(submit('addProjectForm')).then(() => console.log('hello'))
-
-    // const newProjectName = getState().projects.queue;
-    // console.log(newProjectName);
-    // console.log(tasks)
-    // dispatch(postProject(newProjectName, tasks));
-  };
-}
 
 const deleteSavedTasks = (dispatch, selectedProject, tasks) => {
     // delete tasks that do not already exist in the database
-    // we assume that taks without the database created id '_id' do not yet exist in the database
+    // we assume that tasks without the database created id '_id' do not yet exist in the database
 
   tasks.filter((task) => task.shouldDelete && task._id)
       .forEach((task) => dispatch(deleteTask(selectedProject, task)));
@@ -287,7 +291,7 @@ export function postTask(projectId, task) {
         const itemId = data.shortId;
         const databaseId = data._id;
 
-        dispatch(postTaskSuccess(projectId, itemId, databaseId));
+        dispatch(postTaskSuccess(itemId, databaseId));
       })
       .catch(err => {
         console.error(err);

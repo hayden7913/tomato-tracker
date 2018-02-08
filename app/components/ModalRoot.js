@@ -30,16 +30,16 @@ export default class ModalRoot extends Component {
   _render() {
     const { children, className} = this.props;
 
+    // <AppContainer>
     ReactDOM.render(
-    <AppContainer>
       <Provider store={store}>
         <div className={` ${className} modal-container`}>
           <div className="modal-background">
             {children}
           </div>
         </div>
-      </Provider>
-    </AppContainer>,
+      </Provider>,
+    // {/* </AppContainer> */}
     this.modalTarget
     );
   }
