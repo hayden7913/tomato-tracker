@@ -8,7 +8,6 @@ import { secondsToHMMSS } from '../helpers/time';
 import { routeToTimerPage } from '../helpers/route';
 
 import {
-  addProject,
   changeActiveContextMenu,
   deleteProject,
   setSelectedProject,
@@ -212,7 +211,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  addProject,
   changeActiveContextMenu,
   deleteProject,
   push,

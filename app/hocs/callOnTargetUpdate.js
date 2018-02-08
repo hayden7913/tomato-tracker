@@ -25,7 +25,7 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
         // console.log(this.props.remoteSubmitForm)
         // console.log( this.props.remoteSubmitForm, targetValue, prevProps[targetPropKey], this.props[targetPropKey])
         if ((prevProps[targetPropKey] !== targetValue) && (this.props[targetPropKey] === targetValue)) {
-          // console.log('calling');
+
           onTargetUpdate(this.props);
         }
       }
@@ -38,4 +38,3 @@ export default function callOnTargetUpdate(getTargetInfo, onTargetUpdate) {
     return connect(mapStateToProps)(BaseComponent);
   };
 }
-

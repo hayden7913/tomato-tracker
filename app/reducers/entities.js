@@ -101,7 +101,8 @@ export function entities(state = defaultState, action) {
 
     case actions.UPDATE_ITEM: {
       const { itemId, entity,  updateData } = action;
-
+      console.log(entity);
+      console.log(state[entity])
       const newEntity = {
         ...state[entity],
         byId: updateById(state[entity].byId, itemId, updateData),

@@ -10,26 +10,14 @@ export const REPLACE_ALL = 'REPLACE_ALL';
 export const SHIFT_ITEMS = 'SHIFT_ITEMS';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 
-export const ADD_PROJECT = 'ADD_PROJECT';
-export function addProject(projectName) {
-  const newProject = {
-    projectName,
-    tasks: [],
-    shortId: shortid.generate()
-  };
-
-  return {
-    type: 'ADD_PROJECT',
-    project: newProject
-  };
-}
 
 export const EDIT_PROJECT_NAME_REQUEST = 'EDIT_PROJECT_NAME_REQUEST';
 export function updateProjectNameRequest(projectId, projectName) {
   return {
-    type: 'EDIT_PROJECT_NAME_REQUEST',
-    projectId,
-    projectName
+    type: 'UPDATE_ITEM',
+    entity: 'projects',
+    itemId: projectId,
+    updateData: { projectName },
   };
 }
 

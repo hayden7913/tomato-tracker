@@ -55,10 +55,7 @@ class EditProjectPage extends Component {
     const { remoteSubmit } = this.props;
 
     remoteSubmit('ADD_PROJECT');
-
-
     // setTimeout(() => remoteSubmit('ADD_TASKS'), 100)
-
   }
   // handleEditProjectName = (project, updateProjectName) => ({ projectName }) => {
   //   const { updateProjectName } = this.props;
