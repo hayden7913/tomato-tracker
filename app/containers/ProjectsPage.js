@@ -199,7 +199,7 @@ const mapStateToProps = state => {
   const { isOnboardingActive, isModalClosing } = modal;
   const { hasFetched } = projects;
   const { isTimerActive } = timer;
-
+  console.log(projects)
   return {
     hasFetched,
     isModalClosing,

@@ -21,32 +21,23 @@ export function updateProjectNameRequest(projectId, projectName) {
   };
 }
 
-export const QUEUE_NEW_PROJECT = 'QUEUE_NEW_PROJECT';
-export function queueNewProject(projectName) {
-  return {
-    type: 'QUEUE_NEW_PROJECT',
-    projectName
-  };
-}
-
 export const EDIT_TASK_REQUEST = 'EDIT_TASK_REQUEST';
-export function editTask(projectId, taskId, toUpdate) {
+export function editTask(itemId, updateData) {
   return {
-    type: 'EDIT_TASK_REQUEST',
-    projectId,
-    taskId,
-    toUpdate
+    type: 'UPDATE_ITEM',
+    entity: 'tasks',
+    itemId,
+    updateData
   };
 }
 
-export const UPDATE_TASKS = 'UPDATE_TASKS';
-export function updateTasksInState(projectId, newTasks) {
-  return {
-    type: 'UPDATE_TASKS',
-    projectId,
-    newTasks
-  };
-}
+// export const QUEUE_NEW_PROJECT = 'QUEUE_NEW_PROJECT';
+// export function queueNewProject(projectName) {
+//   return {
+//     type: 'QUEUE_NEW_PROJECT',
+//     projectName
+//   };
+// }
 
 export const SET_SELECTED_PROJECT = 'SET_SELECTED_PROJECT';
 export function setSelectedProject(projectId) {
@@ -61,11 +52,11 @@ export function setSelectedProject(projectId) {
 }
 
 export const DELETE_TASK_REQUEST = 'DELETE_TASK_REQUEST';
-export function deleteTaskRequest(projectId, taskId) {
+export function deleteTaskRequest(projectId, itemId) {
   return {
     type: 'DELETE_TASK_REQUEST',
     projectId,
-    taskId
+    itemId
   };
 }
 
@@ -101,11 +92,15 @@ export const moveCardsKeyboard = (key) => {
   };
 };
 
+// const { entity, newItem, itemIdKey } = action;
+
 export const POST_PROJECT_REQUEST = 'POST_PROJECT_REQUEST';
 export function postProjectRequest(project) {
   return {
-    type: 'POST_PROJECT_REQUEST',
-    project
+    type: 'ADD_ITEM',
+    newItem: project,
+    entity: 'projects',
+    itemIdKey: 'shortId',
   };
 }
 
@@ -119,11 +114,11 @@ export function postProjectSuccess(projectId, databaseId) {
 }
 
 export const POST_TASK_SUCCESS = 'POST_TASK_SUCCESS';
-export function postTaskSuccess(projectId, taskId, databaseId) {
+export function postTaskSuccess(projectId, itemId, databaseId) {
   return {
     type: 'POST_TASK_SUCCESS',
     projectId,
-    taskId,
+    itemId,
     databaseId,
   };
 }
@@ -151,13 +146,13 @@ export function fetchProjects() {
 
 export const TOGGLE_SELECTED = 'TOGGLE_SELECTED';
 export const TOGGLE_SELECTED_MULTIPLE = 'TOGGLE_SELECTED_MULTIPLE';
-export const toggleSelected = (projectId, taskId, shouldToggleMultiple) => {
+export const toggleSelected = (projectId, itemId, shouldToggleMultiple) => {
   return (dispatch, getState) => {
     if (shouldToggleMultiple) {
       // this line needs to be updated
       const tasks = getState().listOne.tasks;
       let selectedCardIndices = findIndices(tasks, (task) => task.isSelected);
-      selectedCardIndices = [...selectedCardIndices, taskId].sort((a, b) => a - b);
+      selectedCardIndices = [...selectedCardIndices, itemId].sort((a, b) => a - b);
 
       const startIndex = selectedCardIndices[0];
       const endIndex = selectedCardIndices[selectedCardIndices.length - 1];
@@ -169,9 +164,18 @@ export const toggleSelected = (projectId, taskId, shouldToggleMultiple) => {
       });
     }
 
-    return dispatch({ type: 'TOGGLE_SELECTED', projectId, taskId});
+    return dispatch({ type: 'TOGGLE_SELECTED', projectId, itemId});
   };
 };
+
+export const UPDATE_TASKS = 'UPDATE_TASKS';
+export function updateTasksInState(projectId, updateTasks) {
+  return {
+    type: 'UPDATE_TASKS',
+    projectId,
+    updateTasks,
+  };
+}
 
 export function postProject(projectName, tasks) {
   return (dispatch) => {
@@ -280,10 +284,10 @@ export function postTask(projectId, task) {
         return res.json();
       })
       .then(data => {
-        const taskId = data.shortId;
+        const itemId = data.shortId;
         const databaseId = data._id;
 
-        dispatch(postTaskSuccess(projectId, taskId, databaseId));
+        dispatch(postTaskSuccess(projectId, itemId, databaseId));
       })
       .catch(err => {
         console.error(err);
@@ -293,7 +297,7 @@ export function postTask(projectId, task) {
 
 export function updateTask(project, task, toUpdate) {
   return (dispatch) => {
-    dispatch(editTask(project.shortId, task.shortId, toUpdate));
+    dispatch(editTask(task.shortId, toUpdate));
 
     fetch(
       `${BASE_URL}/projects/${project._id}/tasks/${task._id}`,

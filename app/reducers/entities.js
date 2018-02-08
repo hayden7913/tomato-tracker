@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import  * as actions from '../actions/indexActions';
-import { deletePropImmutable, normalize, shiftElementsUp, shiftElementsDown } from '../helpers/reducerHelpers';
+import { filterProps, normalize, shiftElementsUp, shiftElementsDown } from '../helpers/reducerHelpers';
 
 const extractTasks = projects => _.flatMap(projects, project => project.tasks);
 
-const updateById = (byId, itemId, updateObject) => {
+const updateProp = (byId, itemId, updateObject) => {
   const item = byId[itemId];
 
   return {
@@ -30,14 +30,12 @@ export function entities(state = defaultState, action) {
       const { byId, allIds } = state[entity];
       const newItemId = newItem[itemIdKey];
 
-      const newById = {
-        ...byId,
-        [newItemId]: newItem,
-      };
-
       const newEntity = {
         ...state[entity],
-        byId: newById,
+        byId: {
+          ...byId,
+          [newItemId]: newItem,
+        },
         allIds: [newItemId, ...allIds],
       };
 
@@ -52,7 +50,7 @@ export function entities(state = defaultState, action) {
 
       const newEntity = {
         ...state[entity],
-        byId: deletePropImmutable(byId, itemId),
+        byId: filterProps(byId,  (key) => key !== itemId),
         allIds: allIds.filter(id => id !== itemId),
       };
 
@@ -101,16 +99,42 @@ export function entities(state = defaultState, action) {
 
     case actions.UPDATE_ITEM: {
       const { itemId, entity,  updateData } = action;
-      console.log(entity);
-      console.log(state[entity])
+
       const newEntity = {
         ...state[entity],
-        byId: updateById(state[entity].byId, itemId, updateData),
+        byId: updateProp(state[entity].byId, itemId, updateData),
       };
 
       return {
         ...state,
         [entity]: newEntity,
+      };
+    }
+    // delte tasks that belong to given projectId
+    case actions.UPDATE_TASKS: {
+      const { projectId, updateTasks } = action;
+      const tasksToDelete = state.projects.byId[projectId].tasks;
+
+      const tasksById = {
+        ...filterProps(state.tasks.byId, key => !tasksToDelete.includes(key)),
+        ...updateTasks,
+      }
+
+      const newTasks = {
+        byId: tasksById,
+        allIds: Object.keys(tasksById),
+      }
+
+      const newProjects = {
+        ...state.projects,
+        byId: updateProp(state.projects.byId, projectId, { tasks: newTasks.allIds }),
+      }
+
+      // return newProjects
+      return {
+        ...state,
+        projects: newProjects,
+        tasks: newTasks,
       };
     }
     case actions.FETCH_PROJECTS_SUCCESS:

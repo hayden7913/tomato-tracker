@@ -1,5 +1,12 @@
 const shortid = require('shortid');
 
+const groups = {
+  groupName: 'debug',
+  groupType: 'TASK_PARENT',
+  shortId: 'xxx123',
+  tasks: ['1', '2', '3'],
+}
+
 const sampleData = {
   projects: [
     {

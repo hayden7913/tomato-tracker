@@ -1,4 +1,4 @@
-export const  hiSS= {
+export const  xxSS = {
   hasFetched: true,
   isFetching: false,
   projects: {
@@ -16,7 +16,7 @@ export const  hiSS= {
   }
 }
 
-export const hiFS= {
+export const FS = {
   hasFetched: true,
   isFetching: false,
   projects: {

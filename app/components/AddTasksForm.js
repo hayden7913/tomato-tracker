@@ -37,7 +37,7 @@ let AddTasksForm = class extends Component {
               {title}
               {titleName && <span className="grey-title-text">{titleName}</span>}
             </h2>
-          }
+            }
           <div className={`form-field-wrapper ${isOnboardingActive ? (fieldAnimationName || '') : ''}`}>
             <label htmlFor="taskName">Tasks</label>
             <List className="form-task-list" items={formTasks} renderItem={renderFormTask} />

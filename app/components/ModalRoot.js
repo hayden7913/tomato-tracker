@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 import PropTypes from 'prop-types';
 import { store } from  '../index.js';
 
@@ -30,13 +31,15 @@ export default class ModalRoot extends Component {
     const { children, className} = this.props;
 
     ReactDOM.render(
-    <Provider store={store}>
-      <div className={` ${className} modal-container`}>
-        <div className="modal-background">
-          {children}
+    <AppContainer>
+      <Provider store={store}>
+        <div className={` ${className} modal-container`}>
+          <div className="modal-background">
+            {children}
+          </div>
         </div>
-      </div>
-    </Provider>,
+      </Provider>
+    </AppContainer>,
     this.modalTarget
     );
   }
@@ -45,6 +48,10 @@ export default class ModalRoot extends Component {
     return <noscript />;
   }
 }
+
+// if (module.hot)  {
+//   module.hot.accept();
+// }
 
 ModalRoot.propTypes = {
   children: PropTypes.object.isRequired,

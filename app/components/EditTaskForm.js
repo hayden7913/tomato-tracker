@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { flatMap } from 'lodash';
 
 import { secondsToHMMSS, timeStringToSeconds } from '../helpers/time';
 import { hasAnyValue, isDuplicate } from '../helpers/validate';
@@ -94,6 +95,7 @@ let EditTaskForm = class extends Component {
     );
   }
 };
+
 // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
 EditTaskForm = reduxForm({
   form: 'EditTaskForm', // a unique identifier for this form
@@ -103,7 +105,8 @@ const mapStateToProps = (state, ownProps) => {
   const { clickedTaskId, selectedProjectId, projects } = state;
 
   const selectedProject = projects.items.find((project) => project.shortId === selectedProjectId);
-  const selectedTask = projects.items.concatMap((project) => project.tasks).find((task) => clickedTaskId === task.shortId);
+  const selectedTask = flatMap(projects.items, (project) => project.tasks)
+    .find((task) => clickedTaskId === task.shortId);
   const taskNames = selectedProject.tasks.map((task) => task.taskName);
 
   return ({

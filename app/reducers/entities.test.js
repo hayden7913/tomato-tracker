@@ -13,6 +13,37 @@ import { normalize } from '../helpers/reducerHelpers';
 // **
 
 
+describe('update tasks handlder', () => {
+  const updateTasks = {
+    SyxAeDXNLG: {
+      shortId: 'SyxAeDXNLG',
+      recordedTime: 6004,
+      taskName: 'read up on user flows',
+      _id: '5a76a6f7277417001f402a29',
+      log: null
+    },
+    abc123: {
+      shortId: 'SyxAeDXNLG',
+      recordedTime: 6004,
+      taskName: 'read up on user flows',
+      _id: '5a76a6f7277417001f402a29',
+      log: null
+    },
+  };
+
+  const action = {
+    type: 'UPDATE_TASKS',
+    projectId: 'Bys1v7VLM',
+    updateTasks,
+  };
+
+  it('remove old tasks and adds new ones', () => {
+    const dataName = 'ats';
+    expect( entities(data[dataName + 'FS'], action))
+    .toEqual(data[dataName + 'FT']);
+  });
+});
+
 describe('shift items handlder', () => {
   const action = {
     type: 'SHIFT_ITEMS',
@@ -101,12 +132,12 @@ describe('entities reducer', () => {
 describe('entities reducer', () => {
   const action = {
     type: 'UPDATE_ITEM',
-    itemId: 'Bys1v7VLM',
-    entity: 'projects',
-    updateData: { projectName: 'new project name'}
+    itemId: 'SyxAeDXNLG',
+    entity: 'tasks',
+    updateData: { taskName: 'new project name'}
   };
 
-  it('updates a project name via generic entity reducer', () => {
+  it('updates an item name via generic entity reducer', () => {
     const dataName = 'epr';
     expect(
       entities(data[dataName + 'FS'], action)

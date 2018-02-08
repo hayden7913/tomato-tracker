@@ -1,0 +1,41 @@
+const action = {
+  type: 'SHIFT_ITEMS',
+  startIndex: 0,
+  endIndex: 1,
+  keyPressed: 'ARROW_DOWN',
+  entity: 'projects',
+};
+const getState = () =>
+
+
+
+export const moveCardsKeyboard = (keyPressed) => {
+  return (dispatch, getState) => {
+    const { selectedProjectId, projects } = getState();
+    const activeTasks = projects.items.find(project => project.shortId === selectedProjectId).tasks;
+    let selectedIndices = findIndices(activeTasks, (task) =>  task.isSelected);
+    let startIndex, endIndex;
+
+    if (selectedIndices.length > 1) {
+      selectedIndices = filterConsec(selectedIndices);
+      startIndex = selectedIndices[0];
+      endIndex = selectedIndices[selectedIndices.length - 1];
+    } else {
+      startIndex = endIndex = selectedIndices[0];
+    }
+
+    if (startIndex == undefined) {
+      console.error('move indices undefined');
+      return null;
+    }
+
+    return dispatch({
+      type: 'MOVE_TASKS',
+      activeTasks,
+      keyPressed,
+      selectedProjectId,
+      startIndex,
+      endIndex,
+    });
+  };
+};

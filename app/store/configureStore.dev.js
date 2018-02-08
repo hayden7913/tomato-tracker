@@ -12,7 +12,7 @@ const middleware = routerMiddleware(history);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export function configureStore(initialState) {
-  return createStore(
+  const store = createStore(
     rootReducer,
     initialState,
     composeEnhancers(
@@ -22,4 +22,12 @@ export function configureStore(initialState) {
       ),
     )
   );
+
+  if(module.hot) {
+    module.hot.accept('../reducers/indexReducer', () =>
+      store.replaceReducer(require('../reducers/indexReducer').default)
+    );
+  }
+
+  return store;
 }
