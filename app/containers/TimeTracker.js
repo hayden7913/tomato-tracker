@@ -40,25 +40,6 @@ export default class TimeTracker extends Component {
   componentWillMount() {
     const { isOnboardingActive, projects, selectedProject, setSelectedProject, toggleOnboardMode } = this.props;
 
-    // if (isDevOnboardingActive) {
-    //   // !isOnboardingActive && toggleOnboardMode();
-    //   return null;
-    // }
-    //
-    // if (
-    //   (sessionStorage.isFirstSessionVisit === undefined) ||
-    //   ((projects.length === 0) && isOnboardingActive)
-    // ) {
-    //   sessionStorage.isFirstSessionVisit = false;
-    //   // toggleOnboardMode();
-    //   return null;
-    // }
-
-    // if ((projects.length === 0) && !isOnboardingActive) {
-    //   // hashHistory.push('/projects')
-    //   return null;
-    // }
-
     if (
       localStorage.selectedProjectId &&
       projects.find(project => project.shortId === localStorage.selectedProjectId)

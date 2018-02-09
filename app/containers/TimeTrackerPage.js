@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import { getProjects, getSelectedProject, getSelectedProjectTasks } from '../selectors/indexSelector';
+
 import {
   deleteTask,
   decrementTimer,
@@ -22,6 +24,7 @@ import TimeTracker from './TimeTracker';
 
 class TimeTrackerPage extends Component {
   componentDidUpdate() {
+    console.log('fetching')
     fetchProjects();
   }
 
@@ -57,13 +60,10 @@ class TimeTrackerPage extends Component {
 }
 
 const mapStateToProps = state => {
-  const {  modal, projects, timer, selectedProjectId } = state;
+  const {  entities, modal, projects, timer, selectedProjectId } = state;
   const { hasFetched, isFetching } = projects;
   const { isModalActive, isModalClosing, isOnboardingActive } = modal;
   const { isTimerActive } = timer;
-
-  const selectedProject = projects.items.find(project => project.shortId === selectedProjectId);
-  const selectedTasks = selectedProject && selectedProject.tasks;
 
   return {
     hasFetched,
@@ -72,10 +72,10 @@ const mapStateToProps = state => {
     isModalClosing,
     isOnboardingActive,
     isTimerActive,
-    selectedProject,
     selectedProjectId,
-    selectedTasks,
-    projects: projects.items
+    selectedProject: getSelectedProject(state),
+    selectedTask: getSelectedProjectTasks(state),
+    projects: getProjects(state),
   };
 };
 
