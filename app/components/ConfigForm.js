@@ -38,7 +38,7 @@ const ConfigForm = function ConfigForm(props) {
           <div className="">
             <span>Alarm sound: </span>
             <Field component="select" name="alarmSound">
-              <option value="/public/sound/clock-ring.mp3">ringer</option>
+              <option value="/public/sound/endSound.mp3">ringer</option>
               <option value="/public/sound/endSound.mp3">electronic</option>
             </Field>
           </div>

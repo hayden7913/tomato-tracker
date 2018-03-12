@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect} from 'react-redux';
 
-import store from '../store/configureStore';
+import { secondsToMSS } from '../helpers/time';
 
 import {
   decrementTimer,
@@ -81,6 +81,8 @@ class Timer extends Component {
       incrementTaskTime(selectedProject, activeTask);
     }
 
+    document.title = `${secondsToMSS(remainingTime)} TT`;
+
     if (remainingTime < 1) {
       const audio = new Audio(alarmSoundSrc);
       audio.play();
@@ -113,6 +115,7 @@ class Timer extends Component {
     const { isTimerActive, toggleTimer } = this.props;
 
     if (isTimerActive)  {
+      document.title = 'Tomato Tracker';
       return toggleTimer();
     }
 

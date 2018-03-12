@@ -9,7 +9,7 @@ import EditProjectPage  from './EditProjectPage';
 import ProjectsPage from './ProjectsPage';
 import TimeTrackerPage from './TimeTrackerPage';
 
-import App2 from '../containers/App2';
+import App from '../containers/App';
 // import DevTools from './DevTools';
 
 export default function Root({store, history}) {
@@ -17,7 +17,7 @@ export default function Root({store, history}) {
     <Provider store={store}>
       <div>
         <ConnectedRouter history={history}>
-          <Route path="/" component={App2} />
+          <Route path="/" component={App} />
         </ConnectedRouter>
         {/* <DevTools /> */}
       </div>

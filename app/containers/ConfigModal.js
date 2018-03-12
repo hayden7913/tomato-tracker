@@ -16,7 +16,7 @@ class ConfigModal extends Component {
     const { alarmSound } = submitData;
 
     const newConfigData = {
-      alarmSoundSrc: alarmSound || '/public/sound/clock-ring.mp3'
+      alarmSoundSrc: alarmSound || '/public/sound/endSound.mp3'
     };
 
     updateConfig(newConfigData);

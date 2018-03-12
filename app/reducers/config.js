@@ -1,7 +1,7 @@
 import * as actions from '../actions/indexActions';
 
 const defaultState = {
-  alarmSoundSrc: '/public/sound/clock-ring.mp3'
+  alarmSoundSrc: '/public/sound/endSound.mp3'
 };
 
 export function config(state = defaultState, action) {
